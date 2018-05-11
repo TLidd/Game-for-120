@@ -7,7 +7,7 @@ var tutorial = function(game){};
 tutorial.prototype = {
 	preload: function(){
 		//loading proto assets for the tutorial level of the game
-		game.load.image('ground', 'assets/img/grounds.png');
+		game.load.image('ground', 'assets/img/brickGround.png');
 		game.load.image('jumpPlatform', 'assets/img/platform.png');
 		game.load.image('backstrip', 'assets/img/backstrip.png');
 	},
@@ -16,11 +16,6 @@ tutorial.prototype = {
 		game.stage.backgroundColor = "#D7C7A0";
 		
 		back1 = game.add.sprite(0, game.world.height - 163, 'backstrip');
-		
-		//adding the ground for the game proto
-		ground = game.add.sprite(0, game.world.height - 35, 'ground');
-		ground.scale.setTo(1.25,2);
-		game.physics.arcade.enable(ground);
 		
 		platforms = game.add.group();
 		platforms.enableBody = true;
@@ -40,6 +35,23 @@ tutorial.prototype = {
 		var platform4 = platforms.create(383, game.world.height - 291, 'jumpPlatform');
 		platform4.body.immovable = true;
 		platform4.body.setSize(128, 20);
+		
+		var platform5 = platforms.create(510, game.world.height - 291, 'jumpPlatform');
+		platform5.body.immovable = true;
+		platform5.body.setSize(128, 20);
+		
+		var platform5 = platforms.create(764, game.world.height - 291, 'jumpPlatform');
+		platform5.body.immovable = true;
+		platform5.body.setSize(128, 20);
+		
+		var platform6 = platforms.create(891, game.world.height - 291, 'jumpPlatform');
+		platform6.body.immovable = true;
+		platform6.body.setSize(128, 20);
+		
+	   //adding the ground for the game proto
+		ground = game.add.sprite(0, game.world.height - 40, 'ground');
+		ground.scale.setTo(1,1);
+		game.physics.arcade.enable(ground);
 	},
 	update: function(){
 		
