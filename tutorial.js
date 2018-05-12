@@ -9,7 +9,6 @@ tutorial.prototype = {
 		//loading proto assets for the tutorial level of the game
 		game.load.image('ground', 'assets/img/brickGround.png');
 		game.load.image('jumpPlatform', 'assets/img/platform.png');
-		game.load.image('backstrip', 'assets/img/backstrip.png');
 		game.load.image('p1', 'assets/img/p1.png');
 		game.load.image('p2', 'assets/img/p2.png');
 		game.load.image('p3', 'assets/img/p3.png');
@@ -22,47 +21,53 @@ tutorial.prototype = {
 		//simple background color for proto tutorial
 		game.stage.backgroundColor = "#D7C7A0";
 		
-		//backstrip for the proto
-		back1 = game.add.sprite(0, game.world.height - 163, 'backstrip');
-		
 		//creating a platforms group
 		platforms = game.add.group();
 		platforms.enableBody = true;
 		
-		//creating the platforms for the player to interact
-		var platform1 = platforms.create(0, game.world.height - 163, 'jumpPlatform');
+		//creating the pillars and platforms for basic tutorial
+		var pil1 = game.add.sprite(15, game.world.height - 165, 'p1');
+		pil1.scale.setTo(.5, .5);
+		
+		var pil2 = game.add.sprite(110, game.world.height - 165, 'p2');
+		pil2.scale.setTo(.5, .5);
+		
+		var pil3 = game.add.sprite(200, game.world.height - 165, 'p1');
+		pil3.scale.setTo(.5, .5);
+		
+		var platform1 = platforms.create(135, game.world.height - 193, 'plat2');
+		platform1.scale.setTo(.5, .5);
 		platform1.body.immovable = true;
-		platform1.body.setSize(126, 5, 0, 0);
 		
-		var platform2 = platforms.create(127, game.world.height - 166, 'jumpPlatform');
-		platform2.body.immovable = true;
-		platform2.body.setSize(126, 5, 0, 0);
+		var platform1 = platforms.create(37, game.world.height - 193, 'plat1');
+		platform1.scale.setTo(.5, .5);
+		platform1.body.immovable = true;
 		
-		var platform3 = platforms.create(256, game.world.height - 291, 'jumpPlatform');
+		var platform1 = platforms.create(-61, game.world.height - 193, 'plat3');
+		platform1.scale.setTo(.5, .5);
+		platform1.body.immovable = true;
+		
+		var platform3 = platforms.create(256, game.world.height - 311, 'plat2');
 		platform3.body.immovable = true;
-		platform3.body.setSize(126, 5, 0, 0);
+		var pil3 = game.add.sprite(324, game.world.height - 255, 'p3');
+		pil3.scale.setTo(.88, .88);
 		
-		var platform4 = platforms.create(383, game.world.height - 291, 'jumpPlatform');
-		platform4.body.immovable = true;
-		platform4.body.setSize(126, 5, 0, 0);
-		
-		var platform5 = platforms.create(510, game.world.height - 291, 'jumpPlatform');
+		var platform5 = platforms.create(452, game.world.height - 311, 'plat3');
 		platform5.body.immovable = true;
-		platform5.body.setSize(126, 5, 0, 0);
+		var pil3 = game.add.sprite(520, game.world.height - 255, 'p2');
+		pil3.scale.setTo(.88, .88);
 		
-		var platform6 = platforms.create(764, game.world.height - 291, 'jumpPlatform');
+		var platform6 = platforms.create(764, game.world.height - 311, 'plat1');
 		platform6.body.immovable = true;
-		platform6.body.setSize(126, 5, 0, 0);
-		
-		var platform7 = platforms.create(891, game.world.height - 291, 'jumpPlatform');
-		platform7.body.immovable = true;
-		platform7.body.setSize(126, 5, 0, 0);
+		var pil3 = game.add.sprite(764, game.world.height - 255, 'p1');
+		pil3.scale.setTo(.88, .88);
 				
 	   //adding the ground for the game proto
 		ground = platforms.create(0, game.world.height - 40, 'ground');
 		ground.scale.setTo(1,1);
 		ground.body.immovable = true;
 		game.physics.arcade.enable(ground);
+		game.world.bringToTop(ground);
 
 	},
 	update: function(){
