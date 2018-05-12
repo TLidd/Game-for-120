@@ -10,6 +10,12 @@ tutorial.prototype = {
 		game.load.image('ground', 'assets/img/brickGround.png');
 		game.load.image('jumpPlatform', 'assets/img/platform.png');
 		game.load.image('backstrip', 'assets/img/backstrip.png');
+		game.load.image('p1', 'assets/img/p1.png');
+		game.load.image('p2', 'assets/img/p2.png');
+		game.load.image('p3', 'assets/img/p3.png');
+		game.load.image('plat1', 'assets/img/plat1.png');
+		game.load.image('plat2', 'assets/img/plat2.png');
+		game.load.image('plat3', 'assets/img/plat3.png');
 		
 	},
 	create: function(){
