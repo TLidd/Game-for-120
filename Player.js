@@ -1,4 +1,4 @@
-// This is the Player.js file
+//This is the Player.js file
 function Player(game, key, frame, gravity)
 {
 	Phaser.Sprite.call(this, game, 100, 100, key, frame);
