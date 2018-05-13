@@ -1,16 +1,16 @@
 //This is the Player.js file
-function Player(game, key, frame, gravity)
+function Player(game, key, frame, xcoord, ycoord)
 {
-	Phaser.Sprite.call(this, game, 100, 100, key, frame);
+	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
 	this.anchor.set(0.5, 0.5);
-	this.body.gravity.y = gravity;
-	
-	this.hasBox = false;
-	
+	this.x = xcoord;
+	this.y = ycoord;
+
 	// Enables physics
 	game.physics.enable(this);
+	
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -20,34 +20,24 @@ Player.prototype.constructor = Player;
 // Now to override Phaser.Sprite's update to allow for movement
 Player.prototype.update = function()
 {
-	//MIGHT PUT COLLISION IN OTHER FILE
-	var hittingBox = game.physics.arcade.collide(this, box);
+	this.body.velocity.x = 0;
+	//this.body.gravity.y = 300;
+	var hitPlatform = game.physics.arcade.collide(this, platforms);
 	// Move left and right with A and D
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.A))
+	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 	{
-		this.body.velocity.x = -50;
+		this.body.velocity.x = -200;
 	}
 
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.D))
+	if (game.input.keyboard.isDown(Phaser.Keyboard.D))
 	{
-		this.body.velocity.x = 50;
+		this.body.velocity.x = 200;
 	}
 	
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR))
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform)
 	{
-		this.body.velocity.y = 50
+		this.body.velocity.y = -200;
 	}
-	
-	// Pick up and place things with F
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.F) && hittingBox && !hasBox)
-	{
-		box.destroy();
-		this.hasBox = true;
-	}
-	else if(game.input.keyboard.justPressed(Phaser.Keyboard.F) && hasBox)
-	{
-		game.sprite.create(this.x + 10, this.y + 10, 'box');
-		this.hasBox = false;
-	}
+
 }

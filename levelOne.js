@@ -1,10 +1,10 @@
 /*
-Main menu for game prototype build
-5/8/2018
+Level One state for game prototype build
+5/12/2018
 */
 
-var mainMenu = function(game){};
-mainMenu.prototype = {
+var LevelOne = function(game){};
+LevelOne.prototype = {
 	preload: function(){
 		
 	},
@@ -13,10 +13,8 @@ mainMenu.prototype = {
 		game.stage.backgroundColor = "#4488AA";
 		
 		//Main menu text to indicate the state
-		mainMenuText = game.add.text(game.world.centerX, game.world.centerY, 'Main Menu');
-		controlsText = game.add.text(game.world.centerX, game.world.centerY - 100, 'A to go left, D for right, Space for jump, F to (pick up / place) box');
-		mainMenuText.anchor.set(0.5, 0.5);
-		controlsText.anchor.set(0.5, 0.5);
+		LevelOneText = game.add.text(game.world.centerX, game.world.centerY, 'LevelOne');
+		LevelOneText.anchor.set(0.5, 0.5);
 		
 		//how to switch the state of the game text
 		startText = game.add.text(game.world.centerX, 450, 'Press SPACE to start!');

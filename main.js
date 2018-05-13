@@ -17,5 +17,6 @@ var game = new Phaser.Game(900, 600, Phaser.AUTO);
    }
 
 	game.state.add('mainMenu', mainMenu);
+	game.state.add('lvlOne', LevelOne);
 	game.state.add('tutorialLevel', tutorial);
 	game.state.start('mainMenu');
