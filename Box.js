@@ -33,9 +33,10 @@ createBox.prototype.update = function()
 	var haveBox = false;
 	var skip = false;
    var playerCollision = game.physics.arcade.collide(this, player);
-	var distance = Math.abs(player.x - this.x);
+	var distancex = Math.abs(player.x - this.x);
+	var distancey = Math.abs(player.y - this.y);
 	
-	if(!haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && playerCollision){
+	if(!haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && playerCollision && (distancey < 20)){
 		this.hasBox = true;
 		haveBox = true;
 		skip = true;

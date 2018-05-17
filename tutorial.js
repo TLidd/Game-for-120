@@ -8,7 +8,6 @@ tutorial.prototype = {
 	preload: function(){
 		//loading proto assets for the tutorial level of the game
 		game.load.image('ground', 'assets/img/brickGround.png');
-		game.load.image('jumpPlatform', 'assets/img/platform.png');
 		game.load.image('p1', 'assets/img/p1.png');
 		game.load.image('p2', 'assets/img/p2.png');
 		game.load.image('p3', 'assets/img/p3.png');
