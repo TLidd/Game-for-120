@@ -41,13 +41,13 @@ createBox.prototype.update = function()
 		skip = true;
 	}
 	if(this.hasBox){
-		this.y = player.y - 50;
+		this.y = player.y - 10;
 		this.body.gravity.y = 0;
 		if(player.body.velocity.x > 0){
-		   this.x = player.x + 50;
+		   this.x = player.x + 35;
 		}
 		else if(player.body.velocity.x < 0){
-			this.x = player.x - 50;
+			this.x = player.x - 35;
 		}
 	}
 	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.F)){
