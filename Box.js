@@ -15,6 +15,12 @@ function createBox(game, key, frame, xcoord, ycoord)
 	game.physics.enable(this);
 	//this.body.immovable = true;
 	this.collideWorldBounds = true;
+	this.body.gravity.y = 300;
+	this.body.velocity.x = 0;
+	this.body.drag.setTo(1500, 0);
+	
+	
+	this.hasBox = false;
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -24,16 +30,30 @@ createBox.prototype.constructor = createBox;
 // Now to override Phaser.Sprite's update to allow for movement
 createBox.prototype.update = function()
 {
-	var boxCollision = game.physics.arcade.collide(this, Boxes);
+	var haveBox = false;
+	var skip = false;
    var playerCollision = game.physics.arcade.collide(this, player);
-	var platformCollision = game.physics.arcade.collide(this, platforms);
-	//console.log(boxCollision);
-	if(platformCollision){
-		this.body.velocity.x = 0;
+	var distance = Math.abs(player.x - this.x);
+	
+	if(!haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && playerCollision){
+		this.hasBox = true;
+		haveBox = true;
+		skip = true;
 	}
-	if(game.input.keyboard.justPressed(Phaser.Keyboard.F) && !hasBox && playerCollision){
-		this.kill();
-		hasBox = true;
+	if(this.hasBox){
+		this.y = player.y - 50;
+		this.body.gravity.y = 0;
+		if(player.body.velocity.x > 0){
+		   this.x = player.x + 50;
+		}
+		else if(player.body.velocity.x < 0){
+			this.x = player.x - 50;
+		}
+	}
+	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.F)){
+		this.body.gravity.y = 300;
+		this.hasBox = false;
+		haveBox = false;
 	}
 	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;

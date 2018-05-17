@@ -3,7 +3,6 @@ Tutorial Level for game prototype build
 5/8/2018
 */
 
-var hasBox = false;
 var tutorial = function(game){};
 tutorial.prototype = {
 	preload: function(){
@@ -73,21 +72,23 @@ tutorial.prototype = {
 		
 		//creating the box's that appear on the map
       Boxes = game.add.group();
-		
-		Box1 = new createBox(game, 'atlas', 'box', 700, game.world.height - 80);
-		Box1.body.gravity.y = 300;
+	   Boxes.enableBody = true;
+
+	   var Box1 = new createBox(game, 'atlas', 'box', 700, game.world.height - 80);
 		game.add.existing(Box1);
 		Boxes.add(Box1);
 		
-		Box2 = new createBox(game, 'atlas', 'box', 100, game.world.height - 220);
-		Box2.body.gravity.y = 300;
+		var Box2 = new createBox(game, 'atlas', 'box', 100, game.world.height - 250);
 		game.add.existing(Box2);
 		Boxes.add(Box2);
 		
-		Box4 = new createBox(game, 'atlas', 'box', 150, game.world.height - 220);
-		Box4.body.gravity.y = 300;
+		var Box3 = new createBox(game, 'atlas', 'box', 50, game.world.height - 250);
+		game.add.existing(Box3);
+		Boxes.add(Box3);
+		
+		var Box4 = new createBox(game, 'atlas', 'box', 150, game.world.height - 250);
 		game.add.existing(Box4);
-		Boxes.add(Box4); 
+		Boxes.add(Box4);		
 				
 	   //adding the ground for the game proto
 		ground = platforms.create(0, game.world.height - 40, 'ground');
@@ -112,19 +113,17 @@ tutorial.prototype = {
 
 	},
 	update: function(){
+		
+		boxCollision = game.physics.arcade.collide(Boxes);
+		var platformCollision = game.physics.arcade.collide(Boxes, platforms);
+		
 		//check if win cond met
 		var win = game.physics.arcade.overlap(player, goals);
 		if(win){
 			game.state.start('lvlOne');
 		}
+
 		//if player has box they may summon it
-		if(game.input.keyboard.justPressed(Phaser.Keyboard.F) && hasBox){
-		   Box = new createBox(game, 'atlas', 'box', player.x + 40, player.y -40);
-			Boxes.add(Box);
-			Box.body.gravity.y = 300;
-		   game.add.existing(Box);
-			hasBox = false;
-		}
 		
 	}
 }

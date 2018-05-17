@@ -21,7 +21,6 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function()
 {
 	this.body.velocity.x = 0;
-	//this.body.gravity.y = 300;
 	var hitPlatform = game.physics.arcade.collide(this, platforms);
 	// Move left and right with A and D
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
@@ -39,5 +38,11 @@ Player.prototype.update = function()
 	{
 		this.body.velocity.y = -200;
 	}
+	
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform)
+	{
+		this.body.velocity.y = -200;
+	}
+
 
 }
