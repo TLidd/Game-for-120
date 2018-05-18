@@ -69,7 +69,7 @@ createBox.prototype.update = function()
 	}
 	console.log(player.body.velocity.y)
 	//jumping available to player if on box
-	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision && Math.round(player.body.velocity.y) == 5){
+	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;
 	}
 	
