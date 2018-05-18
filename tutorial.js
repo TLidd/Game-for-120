@@ -121,8 +121,6 @@ tutorial.prototype = {
 		if(win){
 			game.state.start('lvlOne');
 		}
-
-		//if player has box they may summon it
 		
 	}
 }

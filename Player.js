@@ -34,15 +34,9 @@ Player.prototype.update = function()
 	}
 	
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform)
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && player.body.velocity.y == 0)
 	{
 		this.body.velocity.y = -200;
 	}
-	
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform)
-	{
-		this.body.velocity.y = -200;
-	}
-
 
 }
