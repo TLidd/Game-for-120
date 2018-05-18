@@ -30,17 +30,27 @@ createBox.prototype.constructor = createBox;
 // Now to override Phaser.Sprite's update to allow for movement
 createBox.prototype.update = function()
 {
+	//define variables for checking picking up and placing conditions
 	var haveBox = false;
 	var skip = false;
+	var skip2;
    var playerCollision = game.physics.arcade.collide(this, player);
-	var distancex = Math.abs(player.x - this.x);
+	var distancex = player.x - this.x;
 	var distancey = Math.abs(player.y - this.y);
 	
-	if(!haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && playerCollision && (distancey < 20)){
+	console.log(distancey);
+	//to pickup the box
+	if(!skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && (Math.abs(distancex < 40)) && 
+	((distancex < 0 && player.rightFace) || distancex > 0 && player.leftFace) && (distancey < 16)){
 		this.hasBox = true;
 		haveBox = true;
 		skip = true;
 	}
+	
+	//if player isn't placing box this frame don't skip picking up next frame
+	skip2 = false;
+	
+	//if player picked up box place box in arms
 	if(this.hasBox){
 		this.y = player.y - 10;
 		this.body.gravity.y = 0;
@@ -51,12 +61,18 @@ createBox.prototype.update = function()
 			this.x = player.x - 35;
 		}
 	}
+	
+	//place box if player presses button
 	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.F)){
 		this.body.gravity.y = 300;
 		this.hasBox = false;
 		haveBox = false;
+		skip2 = true;
 	}
+	
+	//jumping available to player if on box
 	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;
 	}
+	
 }
