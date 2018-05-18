@@ -38,7 +38,7 @@ createBox.prototype.update = function()
 	var distancey = Math.abs(player.y - this.y);
 	
 	//to pickup the boxd
-	if(!skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && (Math.abs(distancex < 40)) && 
+	if(!skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasBox && (Math.abs(distancex < 40)) && 
 	((distancex < 0 && distancex > -50 && player.rightFace) || distancex > 0 && distancex < 50 && player.leftFace) && (distancey < 16)){
 		this.hasBox = true;
 		haveBox = true;
@@ -61,7 +61,7 @@ createBox.prototype.update = function()
 	}
 	
 	//place box if player presses button
-	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.F)){
+	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.O)){
 		this.body.gravity.y = 300;
 		this.hasBox = false;
 		haveBox = false;

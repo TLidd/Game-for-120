@@ -14,7 +14,7 @@ mainMenu.prototype = {
 		
 		//Main menu text to indicate the state
 		mainMenuText = game.add.text(game.world.centerX, game.world.centerY, 'Main Menu');
-		controlsText = game.add.text(game.world.centerX, game.world.centerY - 100, 'A to go left, D for right, Space for jump, F to (pick up / place) box');
+		controlsText = game.add.text(game.world.centerX, game.world.centerY - 100, 'A to go left, D for right, Space for jump, O to (pick up / place) box');
 		mainMenuText.anchor.set(0.5, 0.5);
 		controlsText.anchor.set(0.5, 0.5);
 		
