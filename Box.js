@@ -13,7 +13,6 @@ function createBox(game, key, frame, xcoord, ycoord)
 	
 	// Enables physics
 	game.physics.enable(this);
-	//this.body.immovable = true;
 	this.collideWorldBounds = true;
 	this.body.gravity.y = 300;
 	this.body.velocity.x = 0;
@@ -38,10 +37,9 @@ createBox.prototype.update = function()
 	var distancex = player.x - this.x;
 	var distancey = Math.abs(player.y - this.y);
 	
-	console.log(distancey);
-	//to pickup the box
+	//to pickup the boxd
 	if(!skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.F) && !this.hasBox && (Math.abs(distancex < 40)) && 
-	((distancex < 0 && player.rightFace) || distancex > 0 && player.leftFace) && (distancey < 16)){
+	((distancex < 0 && distancex > -50 && player.rightFace) || distancex > 0 && distancex < 50 && player.leftFace) && (distancey < 16)){
 		this.hasBox = true;
 		haveBox = true;
 		skip = true;
@@ -69,9 +67,9 @@ createBox.prototype.update = function()
 		haveBox = false;
 		skip2 = true;
 	}
-	
+	console.log(player.body.velocity.y)
 	//jumping available to player if on box
-	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
+	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision && Math.round(player.body.velocity.y) == 5){
 		player.body.velocity.y = -200;
 	}
 	

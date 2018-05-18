@@ -26,6 +26,7 @@ Player.prototype.update = function()
 	//set vel to 0 when not moving
 	this.body.velocity.x = 0;
 	var hitPlatform = game.physics.arcade.collide(this, platforms);
+	
 	// Move left with A
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 	{
@@ -42,7 +43,7 @@ Player.prototype.update = function()
 	}
 
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && player.body.velocity.y == 0)
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0)
 	{
 		this.body.velocity.y = -200;
 	}
