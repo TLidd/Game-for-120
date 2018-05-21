@@ -1,4 +1,8 @@
-var game = new Phaser.Game(800, 400, Phaser.AUTO);
+/*
+Main menu for game prototype build
+5/8/2018
+*/
+var game = new Phaser.Game(900, 600, Phaser.AUTO);
 
    function preload() {
 
@@ -13,4 +17,6 @@ var game = new Phaser.Game(800, 400, Phaser.AUTO);
    }
 
 	game.state.add('mainMenu', mainMenu);
+	game.state.add('lvlOne', LevelOne);
+	game.state.add('tutorialLevel', tutorial);
 	game.state.start('mainMenu');

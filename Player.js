@@ -1,14 +1,19 @@
 //This is the Player.js file
-function Player(game, key, frame, gravity)
+
+function Player(game, key, frame, xcoord, ycoord)
 {
-	Phaser.Sprite.call(this, game, 100, 100, key, frame);
+	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
 	this.anchor.set(0.5, 0.5);
-	this.body.gravity.y = gravity;
+	this.x = xcoord;
+	this.y = ycoord;
+	this.footsteps = game.add.audio('footsteps')
 	
-	this.hasBox = false;
-	
+	//checks to see which direction player is looking
+	this.leftFace = false;
+	this.rightFace = false;
+
 	// Enables physics
 	game.physics.enable(this);
 }
@@ -20,34 +25,41 @@ Player.prototype.constructor = Player;
 // Now to override Phaser.Sprite's update to allow for movement
 Player.prototype.update = function()
 {
-	//MIGHT PUT COLLISION IN OTHER FILE
-	var hittingBox = game.physics.arcade.collide(this, box);
-	// Move left and right with A and D
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.A))
+	//set vel to 0 when not moving
+	this.body.velocity.x = 0;
+	var hitPlatform = game.physics.arcade.collide(this, platforms);
+	
+	// Move left with A
+	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 	{
-		this.body.velocity.x = -50;
+		this.body.velocity.x = -200;
+		this.rightFace = false;
+		this.leftFace = true;
+		this.footsteps.play();
+	}
+	else
+	{
+		this.footsteps.stop();
 	}
 
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.D))
+	//Move right with D
+	if (game.input.keyboard.isDown(Phaser.Keyboard.D))
 	{
-		this.body.velocity.x = 50;
+		this.body.velocity.x = 200;
+		this.leftFace = false;
+		this.rightFace = true;
+		this.footsteps.play();
+	}
+	else
+	{
+		this.footsteps.stop();
 	}
 	
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR))
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0)
 	{
-		this.body.velocity.y = 50
+		this.body.velocity.y = -225;
+		this.footsteps.play();
 	}
-	
-	// Pick up and place things with F
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.F) && hittingBox && !hasBox)
-	{
-		box.destroy();
-		this.hasBox = true;
-	}
-	else if(game.input.keyboard.justPressed(Phaser.Keyboard.F) && hasBox)
-	{
-		game.sprite.create(this.x + 10, this.y + 10, 'box');
-		this.hasBox = false;
-	}
+
 }
