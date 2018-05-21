@@ -2,8 +2,7 @@
 Box prefab for game prototype build
 5/12/2018
 */
-function createBox(game, key, frame, xcoord, ycoord)
-{
+function createBox(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
@@ -27,8 +26,7 @@ createBox.prototype = Object.create(Phaser.Sprite.prototype);
 createBox.prototype.constructor = createBox;
 
 // Now to override Phaser.Sprite's update to allow for movement
-createBox.prototype.update = function()
-{
+createBox.prototype.update = function(){
 	//define variables for checking picking up and placing conditions
 	var haveBox = false;
 	var skip = false;
