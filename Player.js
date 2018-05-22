@@ -11,6 +11,9 @@ function Player(game, key, frame, xcoord, ycoord)
 	//checks to see which direction player is looking
 	this.leftFace = false;
 	this.rightFace = false;
+	
+	//
+	this.hasItem = false;
 
 	// Enables physics
 	game.physics.enable(this);

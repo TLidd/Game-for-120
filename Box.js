@@ -16,8 +16,7 @@ function createBox(game, key, frame, xcoord, ycoord){
 	this.body.gravity.y = 300;
 	this.body.velocity.x = 0;
 	this.body.drag.setTo(1500, 0);
-	
-	
+		
 	this.hasBox = false;
 }
 
@@ -36,11 +35,12 @@ createBox.prototype.update = function(){
 	var distancey = Math.abs(player.y - this.y);
 	
 	//to pickup the boxd
-	if(!skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasBox && (Math.abs(distancex < 40)) && 
+	if(!player.hasItem && !skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasBox && (Math.abs(distancex < 40)) && 
 	((distancex < 0 && distancex > -50 && player.rightFace) || distancex > 0 && distancex < 50 && player.leftFace) && (distancey < 16)){
 		this.hasBox = true;
 		haveBox = true;
 		skip = true;
+		player.hasItem = true;
 	}
 	
 	//if player isn't placing box this frame don't skip picking up next frame
@@ -59,16 +59,32 @@ createBox.prototype.update = function(){
 	}
 	
 	//place box if player presses button
-	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.O)){
+	if(!skip && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.P)){
 		this.body.gravity.y = 300;
 		this.hasBox = false;
 		haveBox = false;
 		skip2 = true;
+		player.hasItem = false;
 	}
-	console.log(player.body.velocity.y)
+	
+	//Throws the box in the direction the player is facing
+	if(player.hasItem && this.hasBox && game.input.keyboard.justPressed(Phaser.Keyboard.L)){
+		this.body.gravity.y = 300;
+		if(player.rightFace){
+			this.body.velocity.x = 900;
+		}
+		else{
+			this.body.velocity.x = -900;
+		}
+		skip2 = true;
+		player.hasItem = false;
+		this.hasBox = false;
+		haveBox = false;
+	}
+
 	//jumping available to player if on box
 	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;
 	}
-	
+		
 }
