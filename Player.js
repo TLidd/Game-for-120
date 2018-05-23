@@ -12,11 +12,13 @@ function Player(game, key, frame, xcoord, ycoord)
 	this.leftFace = false;
 	this.rightFace = false;
 	
-	//
+	//check to see if player has item and ladder
 	this.hasItem = false;
-
+	
 	// Enables physics
 	game.physics.enable(this);
+	//this.body.gravity.y = 1000;
+	this.body.gravity.y = 300;
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -46,9 +48,9 @@ Player.prototype.update = function()
 	}
 
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0)
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0 && !holdingLadder)
 	{
-		this.body.velocity.y = -225;
+		this.body.velocity.y = -200;
 	}
 
 }

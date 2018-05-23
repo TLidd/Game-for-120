@@ -2,7 +2,7 @@
 Tutorial Level for game prototype build
 5/8/2018
 */
-
+var holdingLadder;
 var tutorial = function(game){};
 tutorial.prototype = {
 	preload: function(){
@@ -72,6 +72,12 @@ tutorial.prototype = {
 		//creating the box's that appear on the map
       Boxes = game.add.group();
 	   Boxes.enableBody = true;
+		Ladders = game.add.group();
+		Ladders.enableBody = true;
+		
+		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 500, game.world.height - 400);
+		game.add.existing(Ladder1);
+		Ladders.add(Ladder1);
 
 	   var Box1 = new createBox(game, 'atlas', 'box', 700, game.world.height - 80);
 		game.add.existing(Box1);
@@ -80,6 +86,7 @@ tutorial.prototype = {
 		var Box2 = new createBox(game, 'atlas', 'box', 100, game.world.height - 250);
 		game.add.existing(Box2);
 		Boxes.add(Box2);
+		game.world.bringToTop(Boxes);
 		
 		var Box3 = new createBox(game, 'atlas', 'box', 50, game.world.height - 250);
 		game.add.existing(Box3);
@@ -95,10 +102,9 @@ tutorial.prototype = {
 		ground.body.immovable = true;
 		
 		//adding player to the game via prefab
-		player = new Player(game, 'atlas', 'player', 650, game.world.height - 100);
+		player = new Player(game, 'atlas', 'character', 650, game.world.height - 100);
 		game.add.existing(player);
 		player.scale.setTo(.05, .03);
-		player.body.gravity.y = 300;
 		
 		//add music to game
 		music = game.add.audio('music');
@@ -114,8 +120,8 @@ tutorial.prototype = {
 	update: function(){
 		
 		boxCollision = game.physics.arcade.collide(Boxes);
-		var platformCollision = game.physics.arcade.collide(Boxes, platforms);
-		
+		var platformBoxCollision = game.physics.arcade.collide(Boxes, platforms);
+		var platformLadderCollision = game.physics.arcade.collide(Ladders, platforms);
 		//check if win cond met
 		var win = game.physics.arcade.overlap(player, goals);
 		if(win){
