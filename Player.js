@@ -30,7 +30,7 @@ Player.prototype.update = function()
 {
 	//set vel to 0 when not moving
 	this.body.velocity.x = 0;
-	var hitPlatform = game.physics.arcade.collide(this, platforms);
+	var hitPlatform = game.physics.arcade.collide(this, mapLayer);
 	
 	// Move left with A
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
