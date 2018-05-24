@@ -6,6 +6,7 @@ function createLadder(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
+	
 	this.anchor.set(0.5, 1);
 	this.x = xcoord;
 	this.y = ycoord;
@@ -62,7 +63,7 @@ createLadder.prototype.update = function(){
 		player.hasItem = false;
 	}
 
-	if(playerOverlap && !this.hasLadder){
+	if(playerOverlap && !this.hasLadder && this.angle == 0){
 	   if(playerOverlap && game.input.keyboard.isDown(Phaser.Keyboard.W)){
 		   player.body.gravity.y = 0;
 		   player.body.velocity.y = -100;

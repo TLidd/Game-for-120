@@ -21,6 +21,8 @@ tutorial.prototype = {
 		
 	},
 	create: function(){
+		
+		//game.world.setBounds(0, 0, 1600, 1800);
 		//simple background color for proto tutorial
 		game.stage.backgroundColor = "#D7C7A0";
 		
@@ -65,9 +67,6 @@ tutorial.prototype = {
 		var pil3 = game.add.sprite(764, game.world.height - 255, 'p1');
 		pil3.scale.setTo(.88, .88);
 		
-		var platform7 = platforms.create(270, game.world.height - 135, 'plat1');
-		platform7.body.immovable = true;
-		platform7.scale.setTo(.5, .5);
 		
 		//creating the box's that appear on the map
       Boxes = game.add.group();
@@ -105,6 +104,8 @@ tutorial.prototype = {
 		player = new Player(game, 'atlas', 'character', 650, game.world.height - 100);
 		game.add.existing(player);
 		player.scale.setTo(.05, .03);
+		
+		game.camera.follow(player);
 		
 		//add music to game
 		music = game.add.audio('music');
