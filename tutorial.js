@@ -75,7 +75,7 @@ tutorial.prototype = {
 		Ladders = game.add.group();
 		Ladders.enableBody = true;
 		
-		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 500, game.world.height - 400);
+		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 450, game.world.height - 55);
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
 

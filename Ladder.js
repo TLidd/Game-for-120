@@ -14,7 +14,8 @@ function createLadder(game, key, frame, xcoord, ycoord){
 	game.physics.enable(this);
 	this.collideWorldBounds = true;
 	this.body.drag.setTo(1500, 0);
-		
+	this.angle = 90;
+	
 	this.hasLadder = false;
 }
 
@@ -35,6 +36,7 @@ createLadder.prototype.update = function(){
 		this.hasLadder = true;
 		skip = true;
 		player.hasItem = true;
+		this.angle = 0;
 	}
 	//if player isn't placing ladder this frame don't skip picking up next frame
 	skip2 = false;
@@ -58,6 +60,24 @@ createLadder.prototype.update = function(){
 		this.hasLadder = false;
 		skip2 = true;
 		player.hasItem = false;
+	}
+
+	if(playerOverlap && !this.hasLadder){
+	   if(playerOverlap && game.input.keyboard.isDown(Phaser.Keyboard.W)){
+		   player.body.gravity.y = 0;
+		   player.body.velocity.y = -100;
+	   }
+	   else if(playerOverlap && game.input.keyboard.isDown(Phaser.Keyboard.S)){
+		   player.body.velocity.y = 100;
+		   player.body.gravity.y = 0;
+	   }
+		else{
+		   player.body.velocity.y = 0;
+			player.body.gravity.y = 0;
+		}
+	}
+	else if(!playerOverlap){
+		player.body.gravity.y = 300;
 	}
 		
 }
