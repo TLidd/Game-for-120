@@ -31,7 +31,7 @@ tutorial.prototype = {
 		//backgroundLayer = map.createLayer('Backdrop');
 		//Tile3Layer = map.createLayer('Tile Layer 3');
 		mapLayer = map.createLayer('Collision Layer');
-		
+		map.setCollisionBetween(248, 960);
 		mapLayer.resizeWorld();
 		//creating the box's that appear on the map
       Boxes = game.add.group();
