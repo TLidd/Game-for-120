@@ -1,6 +1,5 @@
 //This is the Player.js file
-function Player(game, key, frame, xcoord, ycoord)
-{
+function Player(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
@@ -29,15 +28,13 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 // Now to override Phaser.Sprite's update to allow for movement
-Player.prototype.update = function()
-{
+Player.prototype.update = function(){
 	//set vel to 0 when not moving
 	this.body.velocity.x = 0;
 	var hitPlatform = game.physics.arcade.collide(this, platforms);
 	
 	// Move left with A
-	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
-	{
+	if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
 		this.body.velocity.x = -200;
 		this.rightFace = false;
 		this.leftFace = true;
@@ -47,8 +44,7 @@ Player.prototype.update = function()
 		}
 	}
    //Move right with D
-	if (game.input.keyboard.isDown(Phaser.Keyboard.D))
-	{
+	if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
 		this.body.velocity.x = 200;
 		this.leftFace = false;
 		this.rightFace = true;
@@ -65,8 +61,7 @@ Player.prototype.update = function()
 	}
 
 	// Jump with SPACEBAR
-	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0 && !holdingLadder)
-	{
+	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0 && !holdingLadder){
 		this.body.velocity.y = -200;
 	}
 
