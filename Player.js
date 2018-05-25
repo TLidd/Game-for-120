@@ -19,6 +19,7 @@ function Player(game, key, frame, xcoord, ycoord)
 	game.physics.enable(this);
 	//this.body.gravity.y = 1000;
 	this.body.gravity.y = 300;
+	this.body.collideWorldBounds = true;
 }
 
 // Explicitly defines the prefab's prototype and constructor

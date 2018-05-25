@@ -7,8 +7,8 @@ var tutorial = function(game){};
 tutorial.prototype = {
 	preload: function(){
 		//loading tilemap into tutorial level
-		game.load.tilemap('tutorial', 'assets/img/leveltemplate.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.spritesheet('tilesheet', 'assets/img/tilesheet_complete.png', 32, 32);
+		game.load.tilemap('tutorial', 'assets/img/tutorial.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.spritesheet('items', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
 		game.load.image('goal', 'assets/img/goal.png');
@@ -19,14 +19,20 @@ tutorial.prototype = {
 	create: function(){
 		
 		map = game.add.tilemap('tutorial');
-		map.addTilesetImage('tilesheet_complete', 'tilesheet');
-		map.setCollisionBetween(248, 309, true);
-		map.setCollisionBetween(341, 343, true);
-		map.setCollisionBetween(372, 374, true);
-		map.setCollisionBetween(403, 405, true);
-		mapLayer = map.createLayer('Tile Layer 1');
-		mapLayer.resizeWorld();
+		map.addTilesetImage('items', 'items');
 		
+		map.setCollisionBetween(248, 960);
+		//map.setCollisionBetween(345, 393, true);
+		//map.setCollisionBetween(133, 138, true);
+		//map.setCollisionBetween(403, 405, true);
+		
+		//map.setCollisionByExclusion([]);
+		
+		//backgroundLayer = map.createLayer('Backdrop');
+		//Tile3Layer = map.createLayer('Tile Layer 3');
+		mapLayer = map.createLayer('Collision Layer');
+		
+		mapLayer.resizeWorld();
 		//creating the box's that appear on the map
       Boxes = game.add.group();
 	   Boxes.enableBody = true;
@@ -37,7 +43,7 @@ tutorial.prototype = {
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
 
-	   var Box1 = new createBox(game, 'atlas', 'box', 700, game.world.height - 80);
+	   var Box1 = new createBox(game, 'atlas', 'box', 700, game.world.height - 700);
 		game.add.existing(Box1);
 		Boxes.add(Box1);
 		
@@ -55,7 +61,7 @@ tutorial.prototype = {
 		Boxes.add(Box4);		
 		
 		//adding player to the game via prefab
-		player = new Player(game, 'atlas', 'character', 650, game.world.height - 100);
+		player = new Player(game, 'atlas', 'character', 650, game.world.height - 200);
 		game.add.existing(player);
 		player.scale.setTo(.05, .03);
 		
@@ -73,6 +79,8 @@ tutorial.prototype = {
 
 	},
 	update: function(){
+		game.physics.arcade.collide(player, mapLayer);
+		
 		
 		boxCollision = game.physics.arcade.collide(Boxes);
 		var platformBoxCollision = game.physics.arcade.collide(Boxes, mapLayer);
