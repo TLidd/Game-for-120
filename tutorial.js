@@ -17,12 +17,13 @@ tutorial.prototype = {
 		game.load.image('goal', 'assets/img/goal.png');
 		game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 		game.load.audio('music', 'assets/audio/Factory.ogg');
-		
+		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');		
 		
 	},
 	create: function(){
 		
-		//game.world.setBounds(0, 0, 1600, 1800);
+		this.soundPlaying = false;
+		
 		//simple background color for proto tutorial
 		game.stage.backgroundColor = "#D7C7A0";
 		
