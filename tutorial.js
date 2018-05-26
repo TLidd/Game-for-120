@@ -12,7 +12,7 @@ tutorial.prototype = {
 		game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
-		game.load.image('goal', 'assets/img/goal.png');
+		game.load.image('goal', 'assets/img/door.png');
 		game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
@@ -22,11 +22,11 @@ tutorial.prototype = {
 	},
 	create: function(){
 		
+		//creating the tilemap from json data
 		map = game.add.tilemap('tutorial');
 		map.addTilesetImage('items', 'itemsHere');
 		
-		//map.setCollisionByExclusion([]);
-		
+		//Creating the layers from tilemap
 		backgroundLayer = map.createLayer('Backdrop');
 		Tile3Layer = map.createLayer('Tile Layer 3');
 		mapLayer = map.createLayer('Collision Layer');
@@ -55,12 +55,13 @@ tutorial.prototype = {
 		map.setCollisionBetween(133, 139, true, mapLayer);
 
 		
-		//creating the box's that appear on the map
+		//creating the box and ladder group that appear on the map
       Boxes = game.add.group();
 	   Boxes.enableBody = true;
 		Ladders = game.add.group();
 		Ladders.enableBody = true;
 		
+		//Creating the ladders for the map
 		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 200, game.world.height - 100);
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
@@ -71,6 +72,7 @@ tutorial.prototype = {
 		Ladder2.angle = 0;
 		Ladders.add(Ladder2);
 
+		//Creating the boxes for the map
 	   var Box1 = new createBox(game, 'atlas', 'box', 600, 1455);
 		game.add.existing(Box1);
 		Boxes.add(Box1);
@@ -84,11 +86,17 @@ tutorial.prototype = {
 		game.add.existing(Box3);
 		Boxes.add(Box3);
 		
+		//add level goal that goes to next state
+		goals = game.add.group();
+		goals.enableBody = true;		
+		var levelGoal = goals.create(1568, 1088, 'goal');
+		
 		//adding player to the game via prefab
 		player = new Player(game, 'atlas', 'character', 1560, game.world.height - 100);
 		game.add.existing(player);
 		player.scale.setTo(.05, .03);
 		
+		//follow the player with the camera
 		game.camera.follow(player);
 		
 		//add music to game
@@ -96,23 +104,20 @@ tutorial.prototype = {
 		music.volume = 0.1;
 		music.play();
 
-		//add level goal that goes to next state
-		goals = game.add.group();
-		goals.enableBody = true;		
-		var goalTutorial = goals.create(784, game.world.height - 380, 'goal');
-
 	},
 	update: function(){		
 		
-		boxCollision = game.physics.arcade.collide(Boxes);
+		//setting up collision checks
+		var boxCollision = game.physics.arcade.collide(Boxes);
 		var platformBoxCollision = game.physics.arcade.collide(Boxes, mapLayer);
 		var platformLadderCollision = game.physics.arcade.collide(Ladders, mapLayer);
-		//check if win cond met
+		
+		//check if win condition is met met
 		var win = game.physics.arcade.overlap(player, goals);
 		if(win){
+			game.sound.stopAll();
 			game.state.start('lvlOne');
 		}
-		console.log(player.body.gravity.y);
 	}
 }
 

@@ -16,7 +16,7 @@ function Player(game, key, frame, xcoord, ycoord){
 	
 	//player footsteps sound
 	this.footsteps = new Phaser.Sound(game, 'footsteps', 1, true);
-	this.footsteps.volume = 0.1;
+	this.footsteps.volume = 0.03;
 	// Enables physics
 	game.physics.enable(this);
 	this.body.gravity.y = 400;
