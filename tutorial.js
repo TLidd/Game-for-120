@@ -8,7 +8,7 @@ tutorial.prototype = {
 	preload: function(){
 		//loading tilemap into tutorial level
 		game.load.tilemap('tutorial', 'assets/img/tutorial.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.spritesheet('items', 'assets/img/items.png', 32, 32);
+		game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
 		game.load.image('goal', 'assets/img/goal.png');
@@ -19,20 +19,38 @@ tutorial.prototype = {
 	create: function(){
 		
 		map = game.add.tilemap('tutorial');
-		map.addTilesetImage('items', 'items');
-		
-		map.setCollisionBetween(248, 960);
-		//map.setCollisionBetween(345, 393, true);
-		//map.setCollisionBetween(133, 138, true);
-		//map.setCollisionBetween(403, 405, true);
+		map.addTilesetImage('items', 'itemsHere');
 		
 		//map.setCollisionByExclusion([]);
 		
-		//backgroundLayer = map.createLayer('Backdrop');
+		backgroundLayer = map.createLayer('Backdrop');
 		//Tile3Layer = map.createLayer('Tile Layer 3');
 		mapLayer = map.createLayer('Collision Layer');
-		map.setCollisionBetween(248, 960);
 		mapLayer.resizeWorld();
+		
+		//collision of brickGround
+		map.setCollisionBetween(248, 309, true, mapLayer);
+		//collision of wall
+		map.setCollisionBetween(341, 343, true, mapLayer);
+		map.setCollisionBetween(372, 374, true, mapLayer);
+		map.setCollisionBetween(403, 405, true, mapLayer);
+		map.setCollisionBetween(434, 436, true, mapLayer);
+		map.setCollisionBetween(465, 467, true, mapLayer);
+		map.setCollisionBetween(496, 498, true, mapLayer);
+		map.setCollisionBetween(527, 529, true, mapLayer);
+		map.setCollisionBetween(558, 560, true, mapLayer);
+		map.setCollisionBetween(589, 591, true, mapLayer);
+		map.setCollisionBetween(620, 622, true, mapLayer);
+		map.setCollisionBetween(651, 653, true, mapLayer);
+		map.setCollisionBetween(682, 684, true, mapLayer);		
+		//collision of cieling
+		map.setCollisionBetween(345, 393, true, mapLayer);
+		//collision of platforms
+		map.setCollisionBetween(9, 14, true, mapLayer);
+		map.setCollisionBetween(71, 76, true, mapLayer);
+		map.setCollisionBetween(133, 138, true, mapLayer);
+		
+		
 		//creating the box's that appear on the map
       Boxes = game.add.group();
 	   Boxes.enableBody = true;
