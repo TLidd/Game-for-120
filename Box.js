@@ -6,6 +6,7 @@ function createBox(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
+	this.scale.setTo(1.1,1.1);
 	this.anchor.set(0.5, 0.5);
 	this.x = xcoord;
 	this.y = ycoord;
@@ -51,10 +52,10 @@ createBox.prototype.update = function(){
 		this.y = player.y - 10;
 		this.body.gravity.y = 0;
 		if(player.body.velocity.x > 0){
-		   this.x = player.x + 35;
+		   this.x = player.x + 45;
 		}
 		else if(player.body.velocity.x < 0){
-			this.x = player.x - 35;
+			this.x = player.x - 45;
 		}
 	}
 	
@@ -85,6 +86,5 @@ createBox.prototype.update = function(){
 	//jumping available to player if on box
 	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;
-	}
-		
+	}		
 }

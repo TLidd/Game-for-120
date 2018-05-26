@@ -6,7 +6,7 @@ function createLadder(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
-	
+	this.scale.setTo(1,1.7);
 	this.anchor.set(0.5, 1);
 	this.x = xcoord;
 	this.y = ycoord;
@@ -16,6 +16,7 @@ function createLadder(game, key, frame, xcoord, ycoord){
 	this.collideWorldBounds = true;
 	this.body.drag.setTo(1500, 0);
 	this.angle = 90;
+	this.body.gravity.y = 300;
 	
 	this.hasLadder = false;
 }
@@ -78,7 +79,7 @@ createLadder.prototype.update = function(){
 		}
 	}
 	else if(!playerOverlap){
-		player.body.gravity.y = 300;
+		player.body.gravity.y = 400;
 	}
 		
 }

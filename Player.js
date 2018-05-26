@@ -19,8 +19,9 @@ function Player(game, key, frame, xcoord, ycoord){
 	this.footsteps.volume = 0.1;
 	// Enables physics
 	game.physics.enable(this);
-	//this.body.gravity.y = 1000;
-	this.body.gravity.y = 300;
+	this.body.gravity.y = 400;
+	// this.body.gravity.y = 300;
+	this.body.collideWorldBounds = true;
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -31,16 +32,16 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function(){
 	//set vel to 0 when not moving
 	this.body.velocity.x = 0;
-	var hitPlatform = game.physics.arcade.collide(this, platforms);
+	var hitPlatform = game.physics.arcade.collide(this, mapLayer);
 	
 	// Move left with A
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
 		this.body.velocity.x = -200;
 		this.rightFace = false;
 		this.leftFace = true;
-		if(!tutorial.soundPlaying && hitPlatform){
+		if(!soundPlaying && hitPlatform){
 			this.footsteps.play();
-			tutorial.soundPlaying = true;
+			soundPlaying = true;
 		}
 	}
    //Move right with D
@@ -48,16 +49,16 @@ Player.prototype.update = function(){
 		this.body.velocity.x = 200;
 		this.leftFace = false;
 		this.rightFace = true;
-		if(!tutorial.soundPlaying && hitPlatform){
+		if(!soundPlaying && hitPlatform){
 			this.footsteps.play();
-			tutorial.soundPlaying = true;
+			soundPlaying = true;
 		}
 	}
 	
-	if(((!(game.input.keyboard.isDown(Phaser.Keyboard.D))) && (!game.input.keyboard.isDown(Phaser.Keyboard.A)) && tutorial.soundPlaying) 
+	if(((!(game.input.keyboard.isDown(Phaser.Keyboard.D))) && (!game.input.keyboard.isDown(Phaser.Keyboard.A)) && soundPlaying) 
 		|| (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) || (this.body.velocity.y != 0)){
 		this.footsteps.stop();
-		tutorial.soundPlaying = false;
+		soundPlaying = false;
 	}
 
 	// Jump with SPACEBAR
