@@ -79,9 +79,9 @@ tutorial.prototype = {
 		movementUp2.fontSize = 20;
 		movementLR = game.add.text(1454, 1648, 'A ←  → D');
 		movementLR.fontSize = 20;
-		pickup = game.add.text(1150, 1638, 'O to pick up');
+		pickup = game.add.text(1150, 1618, 'O to pick up \n box/ladder');
 		pickup.fontSize = 20;
-		drop = pickup = game.add.text(983, 1638, 'P to place');
+		drop = pickup = game.add.text(983, 1618, ' P to place\nbox/ladder');
 		drop.fontSize = 20;
 		drop = pickup = game.add.text(830, 1618, 'L to throw \n     box');
 		drop.fontSize = 20;
@@ -107,14 +107,9 @@ tutorial.prototype = {
 		game.add.existing(Box1);
 		Boxes.add(Box1);
 		
-		var Box2 = new createBox(game, 'atlas', 'box', 170, 1455);
+		var Box2 = new createBox(game, 'atlas', 'box', 190, 1455);
 		game.add.existing(Box2);
 		Boxes.add(Box2);
-		game.world.bringToTop(Boxes);
-		
-		var Box3 = new createBox(game, 'atlas', 'box', 220, 1455);
-		game.add.existing(Box3);
-		Boxes.add(Box3);
 		
 		//adding beginningEntrance
 		var beginningEntrance = game.add.sprite(1568,1568, 'door');
@@ -128,10 +123,18 @@ tutorial.prototype = {
 		spike2.body.moves = false;
 		spikeBlock.add(spike2);
 		
-		game.world.bringToTop(spikeBlock);
+		//x = door + 39, y = door + 68
+		//spikes used for doorway detection because why not
+		var col1 = Entrance.create(1607, 1154, 'spike');
+		col1.body.moves = false;
+		Entrance.add(col1);
+		
+		var col2 = Entrance.create(1639, 1154, 'spike');
+		col2.body.moves = false;
+		Entrance.add(col2);
 				
 		//add level goal that goes to next state		
-		var levelGoal = Entrance.create(1568, 1088, 'door');
+		var levelGoal = game.add.sprite(1568, 1088, 'door');
 		
 		//adding player to the game via prefab
 		player = new Player(game, 'atlas', 'character', 1560, game.world.height - 100);
@@ -140,6 +143,10 @@ tutorial.prototype = {
 		
 		//follow the player with the camera
 		game.camera.follow(player);
+		
+		//bring these objects to top of game world
+		game.world.bringToTop(spikeBlock);
+		game.world.bringToTop(Boxes);
 		
 		//add music to game
 		music = game.add.audio('music', true);
@@ -160,6 +167,7 @@ tutorial.prototype = {
 		
 		if(win){
 			player.footsteps.stop();
+			music.stop();
 			game.state.start('lvlOne');
 		}
 	}
