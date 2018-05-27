@@ -12,7 +12,8 @@ tutorial.prototype = {
 		game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
-		game.load.image('goal', 'assets/img/door.png');
+		game.load.image('door', 'assets/img/door.png');
+		game.load.image('spike', 'assets/img/spike.png');
 		game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
@@ -55,25 +56,54 @@ tutorial.prototype = {
 		map.setCollisionBetween(133, 139, true, mapLayer);
 
 		
-		//creating the box and ladder group that appear on the map
+		//creating the box group
       Boxes = game.add.group();
 	   Boxes.enableBody = true;
+		//creating the ladder group
 		Ladders = game.add.group();
 		Ladders.enableBody = true;
+		//creating the spikeBlock group
+		spikeBlock = game.add.group();
+		spikeBlock.enableBody = true;
+		//creating the end goal Entrance
+		Entrance = game.add.group();
+		Entrance.enableBody = true;
+		
+		/*Below this comment is the code that changes within each different level,
+		the code above stays the same besides the actual tilemap level */
+		
+		movementUp = game.add.text(1500, 1625, 'SPACE');
+		movementUp.fontSize = 20;
+		movementUp.anchor.setTo(0.5,0.5);
+		movementUp2 = game.add.text(1495, 1630, '↑');
+		movementUp2.fontSize = 20;
+		movementLR = game.add.text(1454, 1648, 'A ←  → D');
+		movementLR.fontSize = 20;
+		pickup = game.add.text(1150, 1638, 'O to pick up');
+		pickup.fontSize = 20;
+		drop = pickup = game.add.text(983, 1638, 'P to place');
+		drop.fontSize = 20;
+		drop = pickup = game.add.text(830, 1618, 'L to throw \n     box');
+		drop.fontSize = 20;
+		movementLadderUp = pickup = game.add.text(505, 1638, 'W up ladder');
+		movementLadderUp.fontSize = 20;
+		movementLadderDown = game.add.text(320, 1638, 'S down ladder');
+		movementLadderDown.fontSize = 20;
 		
 		//Creating the ladders for the map
-		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 200, game.world.height - 100);
+		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 400, game.world.height - 100);
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
+		Ladder1.angle = -90;
 		
-		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 175, 1312);
+		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 176, 1312);
 		game.add.existing(Ladder2);
 		Ladder2.scale.setTo(1, 1);
 		Ladder2.angle = 0;
 		Ladders.add(Ladder2);
 
 		//Creating the boxes for the map
-	   var Box1 = new createBox(game, 'atlas', 'box', 600, 1455);
+	   var Box1 = new createBox(game, 'atlas', 'box', 950, 1700);
 		game.add.existing(Box1);
 		Boxes.add(Box1);
 		
@@ -86,10 +116,22 @@ tutorial.prototype = {
 		game.add.existing(Box3);
 		Boxes.add(Box3);
 		
-		//add level goal that goes to next state
-		goals = game.add.group();
-		goals.enableBody = true;		
-		var levelGoal = goals.create(1568, 1088, 'goal');
+		//adding beginningEntrance
+		var beginningEntrance = game.add.sprite(1568,1568, 'door');
+		
+		//Adding the spikeBlocks
+      var spike = spikeBlock.create(1607, 1634, 'spike');
+		spike.body.moves = false;
+		spikeBlock.add(spike);
+		
+		var spike2 = spikeBlock.create(1639, 1634, 'spike');
+		spike2.body.moves = false;
+		spikeBlock.add(spike2);
+		
+		game.world.bringToTop(spikeBlock);
+				
+		//add level goal that goes to next state		
+		var levelGoal = Entrance.create(1568, 1088, 'door');
 		
 		//adding player to the game via prefab
 		player = new Player(game, 'atlas', 'character', 1560, game.world.height - 100);
@@ -111,11 +153,13 @@ tutorial.prototype = {
 		var boxCollision = game.physics.arcade.collide(Boxes);
 		var platformBoxCollision = game.physics.arcade.collide(Boxes, mapLayer);
 		var platformLadderCollision = game.physics.arcade.collide(Ladders, mapLayer);
+		game.physics.arcade.collide(player, spikeBlock);
 		
 		//check if win condition is met met
-		var win = game.physics.arcade.overlap(player, goals);
+		var win = game.physics.arcade.overlap(player, Entrance);
+		
 		if(win){
-			game.sound.stopAll();
+			player.footsteps.stop();
 			game.state.start('lvlOne');
 		}
 	}

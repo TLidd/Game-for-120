@@ -2,7 +2,7 @@
 Main menu for game prototype build
 5/8/2018
 */
-var game = new Phaser.Game(900, 500, Phaser.AUTO);
+var game = new Phaser.Game(800, 500, Phaser.AUTO);
 
    function preload() {
 
