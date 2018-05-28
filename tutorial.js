@@ -65,6 +65,9 @@ tutorial.prototype = {
 		//creating the spikeBlock group
 		spikeBlock = game.add.group();
 		spikeBlock.enableBody = true;
+		//creating killSpike group
+		killSpike = game.add.group();
+		killSpike.enableBody = true;
 		//creating the end goal Entrance
 		Entrance = game.add.group();
 		Entrance.enableBody = true;
@@ -91,16 +94,14 @@ tutorial.prototype = {
 		movementLadderDown.fontSize = 20;
 		
 		//Creating the ladders for the map
-		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 400, game.world.height - 100);
+		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 400, game.world.height - 100, -90, 300, true);
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
-		Ladder1.angle = -90;
 		
-		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 176, 1312);
+		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 176, 1312, 0, 300, true);
 		game.add.existing(Ladder2);
-		Ladder2.scale.setTo(1, 1);
-		Ladder2.angle = 0;
 		Ladders.add(Ladder2);
+		Ladder2.scale.setTo(1, 1);
 
 		//Creating the boxes for the map
 	   var Box1 = new createBox(game, 'atlas', 'box', 950, 1700);
@@ -157,10 +158,11 @@ tutorial.prototype = {
 	update: function(){		
 		
 		//setting up collision checks
-		var boxCollision = game.physics.arcade.collide(Boxes);
-		var platformBoxCollision = game.physics.arcade.collide(Boxes, mapLayer);
-		var platformLadderCollision = game.physics.arcade.collide(Ladders, mapLayer);
+		game.physics.arcade.collide(Boxes);
+		game.physics.arcade.collide(Boxes, mapLayer);
+		game.physics.arcade.collide(Ladders, mapLayer);
 		game.physics.arcade.collide(player, spikeBlock);
+		game.physics.arcade.collide(Boxes, spikeBlock);
 		
 		//check if win condition is met met
 		var win = game.physics.arcade.overlap(player, Entrance);

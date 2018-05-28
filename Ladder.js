@@ -2,7 +2,7 @@
 Ladder prefab for game prototype build
 5/22/2018
 */
-function createLadder(game, key, frame, xcoord, ycoord){
+function createLadder(game, key, frame, xcoord, ycoord, angle, gravity, canHold){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
 	// Custom properties
@@ -15,10 +15,12 @@ function createLadder(game, key, frame, xcoord, ycoord){
 	game.physics.enable(this);
 	this.collideWorldBounds = true;
 	this.body.drag.setTo(1500, 0);
-	this.angle = 90;
-	this.body.gravity.y = 300;
+	this.angle = angle;
+	this.body.gravity.y = gravity;
 	
 	this.hasLadder = false;
+	//determines whether player can pickup ladder
+	this.pickup = canHold;
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -34,7 +36,7 @@ createLadder.prototype.update = function(){
    var playerOverlap = game.physics.arcade.overlap(this, player);
 
 	//to pickup the ladder
-	if(!player.hasItem && !skip2 && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasLadder && playerOverlap){
+	if(this.pickup && !player.hasItem && !skip2 && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasLadder && playerOverlap){
 		this.hasLadder = true;
 		skip = true;
 		player.hasItem = true;

@@ -23,7 +23,7 @@ mainMenu.prototype = {
 		startText.anchor.set(0.5, 0.5);
 		
 		//change state with Space
-		start = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		var start = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 		start.onDown.add(startGame, this);
 	},
 	update: function(){

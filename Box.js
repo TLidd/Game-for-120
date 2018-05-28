@@ -19,6 +19,8 @@ function createBox(game, key, frame, xcoord, ycoord){
 	this.body.drag.setTo(1500, 0);
 		
 	this.hasBox = false;
+	this.deadBox = false;
+
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -30,14 +32,16 @@ createBox.prototype.update = function(){
 	//define variables for checking picking up and placing conditions
 	var haveBox = false;
 	var skip = false;
-	var skip2;
-   var playerCollision = game.physics.arcade.collide(this, player);
+	var skip2 = false;
+   var skip3 = false;
 	var distancex = player.x - this.x;
 	var distancey = Math.abs(player.y - this.y);
 	
-	//to pickup the boxd
-	if(!player.hasItem && !skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasBox && (Math.abs(distancex < 40)) && 
-	((distancex < 0 && distancex > -50 && player.rightFace) || distancex > 0 && distancex < 50 && player.leftFace) && (distancey < 16)){
+	var playerCollision = game.physics.arcade.collide(this, player);
+	
+	//to pickup the box
+	if(!this.deadBox && !player.hasItem && !skip2 && !haveBox && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasBox && (Math.abs(distancex < 40)) && 
+	((distancex < 0 && distancex > -55 && player.rightFace) || distancex > 0 && distancex < 55 && player.leftFace) && (distancey < 16)){
 		this.hasBox = true;
 		haveBox = true;
 		skip = true;
@@ -84,7 +88,19 @@ createBox.prototype.update = function(){
 	}
 
 	//jumping available to player if on box
+
 	if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && playerCollision){
 		player.body.velocity.y = -200;
-	}		
+		skip3 = true;
+	}
+
+	if(playerCollision && this.deadBox && !skip3){
+		player.body.velocity.y = -1;
+	}
+	
+	var boxSpike = game.physics.arcade.collide(this, killSpike);
+   if(boxSpike && !this.hasBox){
+		this.body.moves = false;
+		this.deadBox = true;
+	}
 }

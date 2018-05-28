@@ -62,6 +62,7 @@ Player.prototype.update = function(){
 	}
 
 	// Jump with SPACEBAR
+	console.log(holdingLadder);
 	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0 && !holdingLadder){
 		this.body.velocity.y = -200;
 	}
