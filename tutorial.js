@@ -18,8 +18,6 @@ tutorial.prototype = {
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
 		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');		
-
-		
 	},
 	create: function(){
 		
@@ -98,7 +96,7 @@ tutorial.prototype = {
 		game.add.existing(Ladder1);
 		Ladders.add(Ladder1);
 		
-		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 176, 1312, 0, 300, true);
+		var Ladder2 = new createLadder(game, 'atlas', 'ladder', 176, 1312, 0, 300, false);
 		game.add.existing(Ladder2);
 		Ladders.add(Ladder2);
 		Ladder2.scale.setTo(1, 1);
@@ -170,7 +168,7 @@ tutorial.prototype = {
 		if(win){
 			player.footsteps.stop();
 			music.stop();
-			game.state.start('lvlOne');
+			game.state.start('switch1');
 		}
 	}
 }

@@ -30,7 +30,6 @@ createLadder.prototype.constructor = createLadder;
 // Now to override Phaser.Sprite's update to allow for movement
 createLadder.prototype.update = function(){
 	//define variables for checking picking up and placing conditions
-   holdingLadder = false;
 	var skip = false;
 	var skip2;
    var playerOverlap = game.physics.arcade.overlap(this, player);
@@ -41,6 +40,7 @@ createLadder.prototype.update = function(){
 		skip = true;
 		player.hasItem = true;
 		this.angle = 0;
+		holdingLadder = true;
 	}
 	//if player isn't placing ladder this frame don't skip picking up next frame
 	skip2 = false;
@@ -55,7 +55,6 @@ createLadder.prototype.update = function(){
 		else if(player.body.velocity.x < 0){
 			this.x = player.x - 35;
 		}
-		holdingLadder = true;
 	}
 	
 	//place ladder if player presses button
@@ -64,6 +63,7 @@ createLadder.prototype.update = function(){
 		this.hasLadder = false;
 		skip2 = true;
 		player.hasItem = false;
+		holdingLadder = false;
 	}
 
 	if(playerOverlap && !this.hasLadder && this.angle == 0){
@@ -79,9 +79,6 @@ createLadder.prototype.update = function(){
 		   player.body.velocity.y = 0;
 			player.body.gravity.y = 0;
 		}
-	}
-	else if(!playerOverlap){
-		player.body.gravity.y = 400;
 	}
 		
 }

@@ -31,11 +31,12 @@ Player.prototype.constructor = Player;
 // Now to override Phaser.Sprite's update to allow for movement
 Player.prototype.update = function(){
 	//set vel to 0 when not moving
+	this.body.gravity.y = 400;
 	this.body.velocity.x = 0;
 	var hitPlatform = game.physics.arcade.collide(this, mapLayer);
 	
 	// Move left with A
-	if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
+	if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
 		this.body.velocity.x = -200;
 		this.rightFace = false;
 		this.leftFace = true;
@@ -62,7 +63,6 @@ Player.prototype.update = function(){
 	}
 
 	// Jump with SPACEBAR
-	console.log(holdingLadder);
 	if (game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) && hitPlatform && this.body.velocity.y == 0 && !holdingLadder){
 		this.body.velocity.y = -200;
 	}
