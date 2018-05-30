@@ -8,6 +8,7 @@ mainMenu.prototype = {
 	preload: function(){
 		game.load.image('background', 'assets/img/background.png');
 		game.load.image('pillar', 'assets/img/p1.png');
+		game.load.audio('switch', 'assets/audio/zipclick.ogg');
 	},
 	create: function(){
 		//simple background for prototype
@@ -15,6 +16,9 @@ mainMenu.prototype = {
 		var background = game.add.sprite(400,250, 'background');
 		background.anchor.set(0.5,0.5)
 		game.camera.follow(background);
+		
+		this.click = game.add.audio('switch', false);
+		this.click.volume = 0.5;
 		
 		let textStyle = {
 			font: 'Charter',
@@ -94,9 +98,11 @@ mainMenu.prototype = {
 		};
 
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.W) && position != 4){
+			this.click.play();
 			position++;
 		}
 		else if(game.input.keyboard.justPressed(Phaser.Keyboard.S) && position != 1){
+			this.click.play();
 			position--;
 		}
 			

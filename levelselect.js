@@ -6,11 +6,15 @@ var LevelSelect = function(game){};
 LevelSelect.prototype = {
 	preload: function(){
 		game.load.image('background', 'assets/img/background.png');
+		game.load.audio('switch', 'assets/audio/zipclick.ogg');
 	},
 	create: function(){
 		var background = game.add.sprite(400,250, 'background');
 		background.anchor.set(0.5,0.5)
 		game.camera.follow(background);
+		
+		this.click = game.add.audio('switch', false);
+		this.click.volume = 0.5;
 		
 		let textStyle = {
 			font: 'Charter',
@@ -43,9 +47,11 @@ LevelSelect.prototype = {
 
 		//position of the underline set with w and s
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.W) && position != 1){
+			this.click.play();
 			position--;
 		}
 		else if(game.input.keyboard.justPressed(Phaser.Keyboard.S) && position != 2){
+			this.click.play();
 			position++;
 		}
 			
