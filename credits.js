@@ -1,10 +1,10 @@
 /*
-switch to level 1
-5/27/2018
+Credits screen for game
+5/30/2018
 */
 
-var switch1 = function(game){};
-switch1.prototype = {
+var credits = function(game){};
+credits.prototype = {
 	preload: function(){
 		game.load.audio('end', 'assets/audio/DoorClosed.wav');
 	},

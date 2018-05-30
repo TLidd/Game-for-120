@@ -11,7 +11,7 @@ mainMenu.prototype = {
 	},
 	create: function(){
 		//simple background for prototype
-		position = 3;
+		position = 4;
 		var background = game.add.sprite(400,250, 'background');
 		background.anchor.set(0.5,0.5)
 		game.camera.follow(background);
@@ -36,13 +36,13 @@ mainMenu.prototype = {
 		
 		let textStyle2 = {
 			font: 'Charter',
-			fontSize: 40,
+			fontSize: 30,
 			fill: '#767676',
 			stroke: '#121212',
 			strokeThickness: 6
 		};
 		
-		startText = game.add.text(400, 260, 'Start', textStyle2);
+		startText = game.add.text(400, 230, 'Start', textStyle2);
 		startText.anchor.set(0.5, 0.5);
 		
 		w = game.add.text(230, 260, 'W');
@@ -50,10 +50,10 @@ mainMenu.prototype = {
 		w.font = 'Charter';
 		w.fontSize = 30;
 		
-		underlineText = game.add.text(400, 268, '_____', textStyle2);
+		underlineText = game.add.text(400, 238, '_____', textStyle2);
 		underlineText.anchor.set(0.5, 0.5);
 		
-		levelSelectorText = game.add.text(400, 340, 'Level Select', textStyle2);
+		levelSelectorText = game.add.text(400, 300, 'Level Select', textStyle2);
 		levelSelectorText.anchor.set(0.5, 0.5);
 		
 		up = game.add.text(230, 310, '↑');
@@ -67,13 +67,16 @@ mainMenu.prototype = {
 		down.fontSize = 35;
 		down.angle = 180;
 		
-		tutorialText = game.add.text(400, 420, 'Tutorial', textStyle2);
+		tutorialText = game.add.text(400, 370, 'Tutorial', textStyle2);
 		tutorialText.anchor.set(0.5, 0.5);
 		
 		s = game.add.text(230, 420, 'S');
 		s.anchor.set(0.5, 0.5);
 		s.font = 'Charter';
 		s.fontSize = 30;
+		
+		tutorialText = game.add.text(400, 440, 'Credits', textStyle2);
+		tutorialText.anchor.set(0.5, 0.5);
 		
 		//how to switch the state of the game text
 		underText = game.add.text(400, 444, '____________________');
@@ -84,44 +87,52 @@ mainMenu.prototype = {
 	update: function(){
 		let textStyle2 = {
 			font: 'Charter',
-			fontSize: 40,
+			fontSize: 30,
 			fill: '#767676',
 			stroke: '#121212',
 			strokeThickness: 6
 		};
 
-		if(game.input.keyboard.justPressed(Phaser.Keyboard.W) && position != 3){
+		if(game.input.keyboard.justPressed(Phaser.Keyboard.W) && position != 4){
 			position++;
 		}
 		else if(game.input.keyboard.justPressed(Phaser.Keyboard.S) && position != 1){
 			position--;
 		}
 			
-		if(position == 3){
+		if(position == 4){
 			underlineText.destroy();
-			underlineText = game.add.text(400, 268, '_____', textStyle2);
+			underlineText = game.add.text(400, 238, '_____', textStyle2);
+		   underlineText.anchor.set(0.5, 0.5);
+		}
+		else if(position == 3){
+			underlineText.destroy();
+			underlineText = game.add.text(400, 308, '____________', textStyle2);
 		   underlineText.anchor.set(0.5, 0.5);
 		}
 		else if(position == 2){
 			underlineText.destroy();
-			underlineText = game.add.text(400, 348, '____________', textStyle2);
+			underlineText = game.add.text(400, 378, '________', textStyle2);
 		   underlineText.anchor.set(0.5, 0.5);
 		}
 		else{
 			underlineText.destroy();
-			underlineText = game.add.text(400, 428, '________', textStyle2);
+			underlineText = game.add.text(400, 448, '_______', textStyle2);
 		   underlineText.anchor.set(0.5, 0.5);
 		}
 		//select with space or enter
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) || game.input.keyboard.justPressed(Phaser.Keyboard.ENTER)){
-			if(position == 3){
+			if(position == 4){
 				game.state.start('switch1');
 			}
-			else if(position == 2){
+			else if(position == 3){
 				game.state.start('LevelSelect');
 			}
-			else{
+			else if(position == 2){
 				game.state.start('tutorialLevel');
+			}
+			else{
+				game.state.start('credits');
 			}
 		}
 	}
