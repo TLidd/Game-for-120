@@ -260,5 +260,11 @@ LevelOne.prototype = {
 			music.stop();
 			game.state.start('lvlOne');
 		}		
+		//to quit
+		if(game.input.keyboard.justPressed(Phaser.Keyboard.Q)){
+			player.footsteps.stop();
+			music.stop();
+			game.state.start('mainMenu');
+		}
 	}
 }

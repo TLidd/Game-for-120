@@ -19,5 +19,6 @@ var game = new Phaser.Game(800, 500, Phaser.AUTO);
 	game.state.add('mainMenu', mainMenu);
 	game.state.add('switch1', switch1);
 	game.state.add('lvlOne', LevelOne);
+	game.state.add('LevelSelect', LevelSelect);
 	game.state.add('tutorialLevel', tutorial);
-	game.state.start('switch1');
+	game.state.start('mainMenu');

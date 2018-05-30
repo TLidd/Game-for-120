@@ -82,14 +82,16 @@ tutorial.prototype = {
 		movementLR.fontSize = 20;
 		pickup = game.add.text(1150, 1618, 'O to pick up \n box/ladder');
 		pickup.fontSize = 20;
-		drop = pickup = game.add.text(983, 1618, ' P to place\nbox/ladder');
+		drop = game.add.text(983, 1618, ' P to place\nbox/ladder');
 		drop.fontSize = 20;
-		drop = pickup = game.add.text(830, 1618, 'L to throw \n     box');
+		drop = game.add.text(830, 1618, 'L to throw \n     box');
 		drop.fontSize = 20;
 		movementLadderUp = pickup = game.add.text(505, 1638, 'W up ladder');
 		movementLadderUp.fontSize = 20;
 		movementLadderDown = game.add.text(320, 1638, 'S down ladder');
 		movementLadderDown.fontSize = 20;
+		quitMessage = game.add.text(820, 1035, '  Q to quit\nto main menu');
+		quitMessage.fontSize = 20;
 		
 		//Creating the ladders for the map
 		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 400, game.world.height - 100, -90, 300, true);
@@ -169,6 +171,12 @@ tutorial.prototype = {
 			player.footsteps.stop();
 			music.stop();
 			game.state.start('switch1');
+		}
+		//to quit
+		if(game.input.keyboard.justPressed(Phaser.Keyboard.Q)){
+			player.footsteps.stop();
+			music.stop();
+			game.state.start('mainMenu');
 		}
 	}
 }

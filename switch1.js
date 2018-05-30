@@ -1,6 +1,6 @@
 /*
 Level 1 screen for game prototype build
-5/8/2018
+5/27/2018
 */
 
 var switch1 = function(game){};
@@ -17,7 +17,6 @@ switch1.prototype = {
 		//background color
 		game.stage.backgroundColor = '000000';
 		
-		//Main menu text to indicate the state
 		let textStyle = {
 			font: 'Charter',
 			fontSize: 80,
