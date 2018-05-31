@@ -1,10 +1,10 @@
 /*
-switch to level 1
+switch to level 2
 5/27/2018
 */
 
-var switch1 = function(game){};
-switch1.prototype = {
+var switch2 = function(game){};
+switch2.prototype = {
 	preload: function(){
 		game.load.audio('end', 'assets/audio/Annulet of absorption.wav');
 	},
@@ -25,10 +25,10 @@ switch1.prototype = {
 			strokeThickness: 6
 		};
 		
-		levelText = game.add.text(game.world.centerX, game.world.centerY, 'LEVEL TWO', textStyle);
+		levelText = game.add.text(game.world.centerX, game.world.centerY, 'LEVEL ONE', textStyle);
 		levelText.anchor.set(0.5, 0.5);
       game.camera.follow(levelText);
-		game.time.events.add(Phaser.Timer.SECOND * 5, startLevel2, this);
+		game.time.events.add(Phaser.Timer.SECOND * 5, startLevel1, this);
 	},
 	update: function(){
 		
@@ -36,6 +36,6 @@ switch1.prototype = {
 }
 
 //function that changes the state
-function startLevel2(){
-	game.state.start('lvlOne');
+function startLevel1(){
+	game.state.start('level2');
 }

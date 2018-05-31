@@ -68,10 +68,10 @@ LevelSelect.prototype = {
 		
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) || game.input.keyboard.justPressed(Phaser.Keyboard.ENTER)){
 			if(position == 1){
-				game.state.start('switch1');
+				game.state.start('switch2');
 			}
 			else{
-				game.state.start('level2');
+				game.state.start('switch1');
 			}
 		}
 		

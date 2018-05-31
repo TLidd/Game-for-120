@@ -129,7 +129,7 @@ mainMenu.prototype = {
 		//select with space or enter
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) || game.input.keyboard.justPressed(Phaser.Keyboard.ENTER)){
 			if(position == 4){
-				game.state.start('switch1');
+				game.state.start('switch2');
 			}
 			else if(position == 3){
 				game.state.start('LevelSelect');

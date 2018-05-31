@@ -24,9 +24,9 @@ credits.prototype = {
 		
 		makersText = game.add.text(400, 200, 'Created By: Tyler Liddicoat', textStyle);
 		makersText.anchor.set(0.5, 0.5);
-		makers2Text = game.add.text(430, 250, 'Dylan', textStyle);
+		makers2Text = game.add.text(535, 250, 'Dylan De La Cerda', textStyle);
 		makers2Text.anchor.set(0.5, 0.5);
-		makers3Text = game.add.text(430, 300, 'Casey', textStyle);
+		makers3Text = game.add.text(480, 300, 'Casey Selzer', textStyle);
 		makers3Text.anchor.set(0.5, 0.5);
 		
 		game.time.events.add(Phaser.Timer.SECOND * 3, nextText, this);	
