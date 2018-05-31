@@ -6,7 +6,7 @@ switch to level 1
 var switch1 = function(game){};
 switch1.prototype = {
 	preload: function(){
-		game.load.audio('end', 'assets/audio/DoorClosed.wav');
+		game.load.audio('end', 'assets/audio/Annulet of absorption.wav');
 	},
 	create: function(){
 		

@@ -70,6 +70,9 @@ LevelSelect.prototype = {
 			if(position == 1){
 				game.state.start('switch1');
 			}
+			else{
+				game.state.start('level2');
+			}
 		}
 		
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.Q)){

@@ -19,7 +19,6 @@ LevelOne.prototype = {
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
 		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');		
-
 		
 	},
 	create: function(){
@@ -97,13 +96,13 @@ LevelOne.prototype = {
 		Ladders.add(Ladder4);
 		Ladder4.scale.setTo(1, 1.3);
 		
-		var Ladder4 = new createLadder(game, 'atlas', 'ladder', 1320, 1252, 0, 0, false);
-		game.add.existing(Ladder4);
-		Ladders.add(Ladder4);
+		/*var Ladder5 = new createLadder(game, 'atlas', 'ladder', 1320, 1252, 0, 0, false);
+		game.add.existing(Ladder5);
+		Ladders.add(Ladder5);*/
 		
-		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 1102, 766, 0, 0, false);
-		game.add.existing(Ladder1);
-		Ladders.add(Ladder1);
+		var Ladder6 = new createLadder(game, 'atlas', 'ladder', 1102, 766, 0, 0, false);
+		game.add.existing(Ladder6);
+		Ladders.add(Ladder6);
 		Ladder1.scale.setTo(1, 0.8);
 
 		//Creating the boxes for the map
@@ -127,21 +126,21 @@ LevelOne.prototype = {
 		game.add.existing(Box5);
 		Boxes.add(Box5);
 		
-		var Box5 = new createBox(game, 'atlas', 'box', 950, 600);
-		game.add.existing(Box5);
-		Boxes.add(Box5);
+		var Box6 = new createBox(game, 'atlas', 'box', 950, 600);
+		game.add.existing(Box6);
+		Boxes.add(Box6);
 		
-		var Box5 = new createBox(game, 'atlas', 'box', 1536, 1056);
-		game.add.existing(Box5);
-		Boxes.add(Box5);
+		var Box7 = new createBox(game, 'atlas', 'box', 1536, 1056);
+		game.add.existing(Box7);
+		Boxes.add(Box7);
 		
-		var Box5 = new createBox(game, 'atlas', 'box', 1586, 1056);
-		game.add.existing(Box5);
-		Boxes.add(Box5);
+		var Box8 = new createBox(game, 'atlas', 'box', 1586, 1056);
+		game.add.existing(Box8);
+		Boxes.add(Box8);
 		
-		var Box5 = new createBox(game, 'atlas', 'box', 1636, 1056);
-		game.add.existing(Box5);
-		Boxes.add(Box5);
+		var Box9 = new createBox(game, 'atlas', 'box', 1636, 1056);
+		game.add.existing(Box9);
+		Boxes.add(Box9);
 		
 		//adding beginningEntrance
 		var beginningEntrance = game.add.sprite(96,64, 'door');
