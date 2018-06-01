@@ -8,7 +8,7 @@ var tutorial = function(game){};
 tutorial.prototype = {
 	preload: function(){
 		//loading tilemap into tutorial level
-		game.load.tilemap('tutorial', 'assets/img/tutorial.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('tutorial', 'assets/levels/tutorial.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
@@ -73,25 +73,27 @@ tutorial.prototype = {
 		/*Below this comment is the code that changes within each different level,
 		the code above stays the same besides the actual tilemap level */
 		
-		movementUp = game.add.text(1500, 1625, 'SPACE');
+		var movementUp = game.add.text(1500, 1625, 'SPACE');
 		movementUp.fontSize = 20;
 		movementUp.anchor.setTo(0.5,0.5);
-		movementUp2 = game.add.text(1495, 1630, '↑');
+		var movementUp2 = game.add.text(1495, 1630, '↑');
 		movementUp2.fontSize = 20;
-		movementLR = game.add.text(1454, 1648, 'A ←  → D');
+		var movementLR = game.add.text(1454, 1648, 'A ←  → D');
 		movementLR.fontSize = 20;
 		pickup = game.add.text(1150, 1618, 'O to pick up \n box/ladder');
 		pickup.fontSize = 20;
-		drop = game.add.text(983, 1618, ' P to place\nbox/ladder');
+		var drop = game.add.text(983, 1618, ' P to place\nbox/ladder');
 		drop.fontSize = 20;
-		drop = game.add.text(830, 1618, 'L to throw \n     box');
+		var drop = game.add.text(830, 1618, 'L to throw \n     box');
 		drop.fontSize = 20;
-		movementLadderUp = pickup = game.add.text(505, 1638, 'W up ladder');
+		var movementLadderUp = game.add.text(505, 1638, 'W up ladder');
 		movementLadderUp.fontSize = 20;
-		movementLadderDown = game.add.text(320, 1638, 'S down ladder');
+		var movementLadderDown = game.add.text(320, 1638, 'S down ladder');
 		movementLadderDown.fontSize = 20;
-		quitMessage = game.add.text(820, 1035, '  Q to quit\nto main menu');
+		var quitMessage = game.add.text(820, 1035, '  Q to quit\nto main menu');
 		quitMessage.fontSize = 20;
+		var restartMessage = game.add.text(980, 1035, '  R to restart\n       level');
+		restartMessage.fontSize = 20;
 		
 		//Creating the ladders for the map
 		var Ladder1 = new createLadder(game, 'atlas', 'ladder', 400, game.world.height - 100, -90, 300, true);
@@ -170,7 +172,7 @@ tutorial.prototype = {
 		if(win){
 			player.footsteps.stop();
 			music.stop();
-			game.state.start('switch1');
+			game.state.start('switch2');
 		}
 		//to quit
 		if(game.input.keyboard.justPressed(Phaser.Keyboard.Q)){

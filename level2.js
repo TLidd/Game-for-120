@@ -9,7 +9,7 @@ var level2 = function(game){};
 level2.prototype = {
 	preload: function(){
 		//loading tilemap into tutorial level
-		game.load.tilemap('level2', 'assets/img/level2.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('level2', 'assets/levels/level2.json', null, Phaser.Tilemap.TILED_JSON);
 		game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
 		
 		//loading other assets
@@ -185,6 +185,12 @@ level2.prototype = {
 			player.footsteps.stop();
 			music.stop();
 			game.state.start('mainMenu');
+		}
+		
+		if(game.input.keyboard.justPressed(Phaser.Keyboard.R)){
+			player.footsteps.stop();
+			music.stop();
+			game.state.start('level2');
 		}
 	}
 }

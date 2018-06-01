@@ -71,7 +71,7 @@ LevelSelect.prototype = {
 				game.state.start('switch2');
 			}
 			else{
-				game.state.start('switch1');
+				game.state.start('switch3');
 			}
 		}
 		
