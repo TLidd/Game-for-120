@@ -7,16 +7,7 @@ var soundPlaying = false;
 var holdingLadder;
 var level3 = function(game){};
 level3.prototype = {
-   preload: function(){
-      //loading tilemap into tutorial level
-      game.load.tilemap('level3', 'assets/levels/level3.json', null, Phaser.Tilemap.TILED_JSON);
-      game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
-      
-      //loading other assets
-      game.load.image('door', 'assets/img/door.png');
-      game.load.image('spike', 'assets/img/spike.png');
-		game.load.spritesheet('player', 'assets/img/characterSprites.png', 32, 64);
-      game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
+
 
       //adding in audio
       game.load.audio('music', 'assets/audio/Factory.ogg');
@@ -91,79 +82,7 @@ level3.prototype = {
 
       //Creating the boxes for the map
       var Box1 = new createBox(game, 'atlas', 'box', 1670, 899);
-      game.add.existing(Box1);
-      Boxes.add(Box1);
-      
-      //beginning entrance
-      var beginningEntrance = game.add.sprite(1568,192, 'door');
-      
-      var blockSpike = spikeBlock.create(1607, 260, 'spike');
-      blockSpike.body.moves = false;
-      
-      var blockSpike2 = spikeBlock.create(1639, 260, 'spike');
-      blockSpike2.body.moves = false;
-      
-      //kill spikes  
-      var xcoord = 489;
-      for(var i = 0; i < 8; i++){
-         var spike = killSpike.create(xcoord, 323, 'spike');
-         spike.body.moves = false;
-         xcoord = xcoord + 32;
-      }
-      
-      var spike = killSpike.create(1033, 643, 'spike');
-      spike.body.moves = false;     
-      var spike = killSpike.create(1065, 643, 'spike');
-      spike.body.moves = false;
-      
-      var spike = killSpike.create(361,643, 'spike');
-      spike.body.moves = false;
-      var spike = killSpike.create(393, 643, 'spike');
-      spike.body.moves = false;
-      
-      var spike = killSpike.create(681, 899, 'spike');
-      spike.body.moves = false;
-      var spike = killSpike.create(713, 899, 'spike');
-      spike.body.moves = false;
-      
-      var spike = killSpike.create(1321, 899, 'spike');
-      spike.body.moves = false;
-      var spike = killSpike.create(1353, 899, 'spike');
-      spike.body.moves = false;
-      
-      var spike = killSpike.create(1545, 899, 'spike');
-      spike.body.moves = false;
-      var spike = killSpike.create(1577, 899, 'spike');
-      spike.body.moves = false;
-      
-      //x = door + 39, y = door + 68
-      //spikes used for doorway detection because why not
-      var col1 = Entrance.create(135, 260, 'spike');
-      col1.body.moves = false;
-      Entrance.add(col1);
-      
-      var col2 = Entrance.create(167, 260, 'spike');
-      col2.body.moves = false;
-      Entrance.add(col2);
-            
-      //add level goal that goes to next state     
-      var levelGoal = game.add.sprite(96, 192, 'door');
-      
-      //adding player to the game via prefab
-      player = new Player(game, 'player', 0, 1590, 310);
-      game.add.existing(player);
-      
-      //follow the player with the camera
-      game.camera.follow(player);
-      
-      //bring these objects to top of game world
-      game.world.bringToTop(Boxes);
-      game.world.bringToTop(spikeBlock);
-      
-      //add music to game
-      music = game.add.audio('music', true);
-      music.volume = 0.1;
-      music.play();
+
 
    },
    update: function(){     

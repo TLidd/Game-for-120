@@ -6,19 +6,7 @@ var soundPlaying = false;
 var holdingLadder;
 var tutorial = function(game){};
 tutorial.prototype = {
-   preload: function(){
-      //loading tilemap into tutorial level
-      game.load.tilemap('tutorial', 'assets/levels/tutorial.json', null, Phaser.Tilemap.TILED_JSON);
-      game.load.spritesheet('itemsHere', 'assets/img/items.png', 32, 32);
-      
-      //loading other assets
-      game.load.image('door', 'assets/img/door.png');
-      game.load.image('spike', 'assets/img/spike.png');
-      game.load.spritesheet('player', 'assets/img/characterSprites.png', 32, 64);
-      game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 
-      game.load.audio('music', 'assets/audio/Factory.ogg');
-      game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');
 
       
    },
@@ -123,41 +111,7 @@ tutorial.prototype = {
       
       //Adding the spikeBlocks
       var spike = spikeBlock.create(1607, 1634, 'spike');
-      spike.body.moves = false;
-      spikeBlock.add(spike);
-      
-      var spike2 = spikeBlock.create(1639, 1634, 'spike');
-      spike2.body.moves = false;
-      spikeBlock.add(spike2);
-      
-      //x = door + 39, y = door + 68
-      //spikes used for doorway detection because why not
-      var col1 = Entrance.create(1607, 1154, 'spike');
-      col1.body.moves = false;
-      Entrance.add(col1);
-      
-      var col2 = Entrance.create(1639, 1154, 'spike');
-      col2.body.moves = false;
-      Entrance.add(col2);
-            
-      //add level goal that goes to next state     
-      var levelGoal = game.add.sprite(1568, 1088, 'door');
-      
-      //adding player to the game via prefab
-      player = new Player(game, 'player', 0, 1560, game.world.height - 100);
-      game.add.existing(player);
-      
-      //follow the player with the camera
-      game.camera.follow(player);
-      
-      //bring these objects to top of game world
-      game.world.bringToTop(spikeBlock);
-      game.world.bringToTop(Boxes);
-      
-      //add music to game
-      music = game.add.audio('music', true);
-      music.volume = 0.1;
-      music.play();
+
 
    },
    update: function(){     
