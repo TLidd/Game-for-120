@@ -46,6 +46,7 @@ mainMenu.prototype = {
          strokeThickness: 6
       };
       
+      //main menu text
       startText = game.add.text(400, 230, 'Start', textStyle2);
       startText.anchor.set(0.5, 0.5);
       

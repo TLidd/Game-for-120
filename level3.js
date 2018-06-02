@@ -18,6 +18,7 @@ level3.prototype = {
 		game.load.spritesheet('player', 'assets/img/characterSprites.png', 32, 64);
       game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 
+      //adding in audio
       game.load.audio('music', 'assets/audio/Factory.ogg');
       game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');    
 
@@ -193,7 +194,7 @@ level3.prototype = {
          music.stop();
          game.state.start('mainMenu');
       }
-      
+      //to restart
       if(game.input.keyboard.justPressed(Phaser.Keyboard.R)){
          player.footsteps.stop();
          music.stop();

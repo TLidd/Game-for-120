@@ -16,11 +16,13 @@ var game = new Phaser.Game(800, 500, Phaser.AUTO);
 
    }
 
+   //the different game states 
    game.state.add('mainMenu', mainMenu);
    game.state.add('switch1', switch1);
    game.state.add('switch2', switch2);
    game.state.add('lvlOne', LevelOne);
    game.state.add('switch3', switch3);
+   game.state.add('switch5', switch5);
    game.state.add('credits', credits);
    game.state.add('level2', level2);
    game.state.add('level3', level3);

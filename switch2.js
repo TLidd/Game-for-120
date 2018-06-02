@@ -17,6 +17,7 @@ switch2.prototype = {
       //background color
       game.stage.backgroundColor = '000000';
       
+      //text style for text
       let textStyle = {
          font: 'Charter',
          fontSize: 80,
@@ -25,6 +26,7 @@ switch2.prototype = {
          strokeThickness: 6
       };
       
+      //level text
       levelText = game.add.text(game.world.centerX, game.world.centerY, 'LEVEL ONE', textStyle);
       levelText.anchor.set(0.5, 0.5);
       game.camera.follow(levelText);

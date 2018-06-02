@@ -76,6 +76,7 @@ tutorial.prototype = {
       /*Below this comment is the code that changes within each different level,
       the code above stays the same besides the actual tilemap level */
       
+      //text to help the player learn the controls
       var movementUp = game.add.text(1500, 1625, 'SPACE');
       movementUp.fontSize = 20;
       movementUp.anchor.setTo(0.5,0.5);

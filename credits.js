@@ -14,6 +14,7 @@ credits.prototype = {
       background.anchor.set(0.5,0.5)
       game.camera.follow(background);
       
+      //textstyle for the text
       let textStyle = {
          font: 'Charter',
          fontSize: 40,
@@ -22,6 +23,7 @@ credits.prototype = {
          strokeThickness: 2
       };
       
+      //creators of game
       makersText = game.add.text(400, 200, 'Created By: Tyler Liddicoat', textStyle);
       makersText.anchor.set(0.5, 0.5);
       makers2Text = game.add.text(535, 250, 'Dylan De La Cerda', textStyle);
@@ -29,6 +31,7 @@ credits.prototype = {
       makers3Text = game.add.text(480, 300, 'Casey Selzer', textStyle);
       makers3Text.anchor.set(0.5, 0.5);
       
+      //events to change the creds
       game.time.events.add(Phaser.Timer.SECOND * 3, nextText, this); 
       game.time.events.add(Phaser.Timer.SECOND * 6, nextText2, this);   
       game.time.events.add(Phaser.Timer.SECOND * 9, nextText3, this);
