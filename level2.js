@@ -16,6 +16,7 @@ level2.prototype = {
 		game.load.image('door', 'assets/img/door.png');
 		game.load.image('spike', 'assets/img/spike.png');
 		game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
+		game.load.atlas('player', 'assets/img/player.png', 'assets/img/player.json');
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
 		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');		
@@ -144,7 +145,7 @@ level2.prototype = {
 		var levelGoal = game.add.sprite(1568, 1184, 'door');
 		
 		//adding player to the game via prefab
-		player = new Player(game, 'atlas', 'character', 120, 1696);
+		player = new Player(game, 'player', '120 dude', 1560, game.world.height - 100);
 		game.add.existing(player);
 		player.scale.setTo(.05, .03);
 		

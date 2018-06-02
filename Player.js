@@ -2,6 +2,9 @@
 function Player(game, key, frame, xcoord, ycoord){
 	Phaser.Sprite.call(this, game, xcoord, ycoord, key, frame);
 	
+	// Set player's size
+	this.body.setSize(32, 64);
+	
 	// Custom properties
 	this.anchor.set(0.5, 0.5);
 	this.x = xcoord;
@@ -17,6 +20,9 @@ function Player(game, key, frame, xcoord, ycoord){
 	//player footsteps sound
 	this.footsteps = new Phaser.Sound(game, 'footsteps', 1, true);
 	this.footsteps.volume = 0.03;
+	
+	// Player animations
+	this.animations.add('playerMove', Phaser.Animation.generateFrameNames('player', 1, 6, '', 4), 30, true); 
 	// Enables physics
 	game.physics.enable(this);
 	this.body.gravity.y = 400;
@@ -37,9 +43,11 @@ Player.prototype.update = function(){
 	
 	// Move left with A
 	if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
+		this.scale.x *= -1;
 		this.body.velocity.x = -200;
 		this.rightFace = false;
 		this.leftFace = true;
+
 		if(!soundPlaying && hitPlatform){
 			this.footsteps.play();
 			soundPlaying = true;
@@ -47,9 +55,11 @@ Player.prototype.update = function(){
 	}
    //Move right with D
 	if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
+		this.scale.x *= 1;
 		this.body.velocity.x = 200;
 		this.leftFace = false;
 		this.rightFace = true;
+
 		if(!soundPlaying && hitPlatform){
 			this.footsteps.play();
 			soundPlaying = true;
