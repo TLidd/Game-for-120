@@ -14,10 +14,13 @@ tutorial.prototype = {
 		//loading other assets
 		game.load.image('door', 'assets/img/door.png');
 		game.load.image('spike', 'assets/img/spike.png');
+		game.load.spritesheet('player', 'assets/img/characterSprites.png', 32, 64);
 		game.load.atlas('atlas','assets/img/spritesheet.png','assets/img/sprites.json');
 
 		game.load.audio('music', 'assets/audio/Factory.ogg');
-		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');		
+		game.load.audio('footsteps', 'assets/audio/Footsteps.ogg');
+
+		
 	},
 	create: function(){
 		
@@ -140,9 +143,8 @@ tutorial.prototype = {
 		var levelGoal = game.add.sprite(1568, 1088, 'door');
 		
 		//adding player to the game via prefab
-		player = new Player(game, 'atlas', 'character', 1560, game.world.height - 100);
+		player = new Player(game, 'player', 0, 1560, game.world.height - 100);
 		game.add.existing(player);
-		player.scale.setTo(.05, .03);
 		
 		//follow the player with the camera
 		game.camera.follow(player);

@@ -221,9 +221,8 @@ LevelOne.prototype = {
 		var levelGoal = game.add.sprite(96, 928, 'door');
 		
 		//adding player to the game via prefab
-		player = new Player(game, 'atlas', 'character', 250, 192);
+		player = new Player(game, 'player', 0, 250, 192);
 		game.add.existing(player);
-		player.scale.setTo(.05, .03);
 		
 		//follow the player with the camera
 		game.camera.follow(player);

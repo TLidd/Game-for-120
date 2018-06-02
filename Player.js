@@ -22,6 +22,8 @@ function Player(game, key, frame, xcoord, ycoord){
 	this.body.gravity.y = 400;
 	// this.body.gravity.y = 300;
 	this.body.collideWorldBounds = true;
+	
+	this.animations.add('animation', [1,2,3,4,5], 10, true);
 }
 
 // Explicitly defines the prefab's prototype and constructor
@@ -37,6 +39,8 @@ Player.prototype.update = function(){
 	
 	// Move left with A
 	if(game.input.keyboard.isDown(Phaser.Keyboard.A)){
+		this.scale.x = -1;
+		this.animations.play('animation');
 		this.body.velocity.x = -200;
 		this.rightFace = false;
 		this.leftFace = true;
@@ -45,8 +49,9 @@ Player.prototype.update = function(){
 			soundPlaying = true;
 		}
 	}
-   //Move right with D
-	if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
+	else if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
+		this.scale.x = 1;
+		this.animations.play('animation');
 		this.body.velocity.x = 200;
 		this.leftFace = false;
 		this.rightFace = true;
@@ -54,6 +59,10 @@ Player.prototype.update = function(){
 			this.footsteps.play();
 			soundPlaying = true;
 		}
+	}
+	else{
+		this.animations.stop();
+		this.frame = 0;
 	}
 	
 	if(((!(game.input.keyboard.isDown(Phaser.Keyboard.D))) && (!game.input.keyboard.isDown(Phaser.Keyboard.A)) && soundPlaying) 
