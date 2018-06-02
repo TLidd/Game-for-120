@@ -25,7 +25,7 @@ switch1.prototype = {
          strokeThickness: 6
       };
       
-      levelText = game.add.text(game.world.centerX, game.world.centerY, 'LEVEL TWO', textStyle);
+      levelText = game.add.text(game.world.centerX, game.world.centerY, 'LEVEL THREE', textStyle);
       levelText.anchor.set(0.5, 0.5);
       game.camera.follow(levelText);
       game.time.events.add(Phaser.Timer.SECOND * 5, startLevel2, this);

@@ -25,13 +25,19 @@ LevelSelect.prototype = {
       };
       
       //level selector
-      level1 = game.add.text(400, 150, '1', textStyle);
+      level1 = game.add.text(200, 150, '1', textStyle);
       level1.anchor.set(0.5, 0.5);
       
-      level2 = game.add.text(400, 350, '2', textStyle);
+      level2 = game.add.text(200, 350, '2', textStyle);
       level2.anchor.set(0.5, 0.5);
       
-      underlineText = game.add.text(400, 158, '_', textStyle);
+      level3 = game.add.text(600, 150, '3', textStyle);
+      level3.anchor.set(0.5, 0.5);
+      
+      level4 = game.add.text(600, 350, '4', textStyle);
+      level4.anchor.set(0.5, 0.5);
+      
+      underlineText = game.add.text(200, 158, '_', textStyle);
       underlineText.anchor.set(0.5, 0.5);
       
       position = 1;
@@ -50,19 +56,29 @@ LevelSelect.prototype = {
          this.click.play();
          position--;
       }
-      else if(game.input.keyboard.justPressed(Phaser.Keyboard.S) && position != 2){
+      else if(game.input.keyboard.justPressed(Phaser.Keyboard.S) && position != 4){
          this.click.play();
          position++;
       }
          
       if(position == 1){
          underlineText.destroy();
-         underlineText = game.add.text(400, 158, '_', textStyle);
+         underlineText = game.add.text(200, 158, '_', textStyle);
+         underlineText.anchor.set(0.5, 0.5);
+      }
+      else if(position == 2){
+         underlineText.destroy();
+         underlineText = game.add.text(200, 358, '_', textStyle);
+         underlineText.anchor.set(0.5, 0.5);
+      }
+      else if(position == 3){
+         underlineText.destroy();
+         underlineText = game.add.text(600, 158, '_', textStyle);
          underlineText.anchor.set(0.5, 0.5);
       }
       else{
          underlineText.destroy();
-         underlineText = game.add.text(400, 358, '_', textStyle);
+         underlineText = game.add.text(600, 358, '_', textStyle);
          underlineText.anchor.set(0.5, 0.5);
       }
       
@@ -70,8 +86,14 @@ LevelSelect.prototype = {
          if(position == 1){
             game.state.start('switch2');
          }
-         else{
+         else if(position == 2){
             game.state.start('switch3');
+         }
+         else if(position == 3){
+            game.state.start('switch1');
+         }
+         else{
+            game.state.start('switch1');
          }
       }
       

@@ -93,10 +93,6 @@ level3.prototype = {
       game.add.existing(Box1);
       Boxes.add(Box1);
       
-      var Box1 = new createBox(game, 'atlas', 'box', 1400, 310);
-      game.add.existing(Box1);
-      Boxes.add(Box1);
-      
       //beginning entrance
       var beginningEntrance = game.add.sprite(1568,192, 'door');
       
