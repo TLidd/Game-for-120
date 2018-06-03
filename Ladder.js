@@ -33,9 +33,10 @@ createLadder.prototype.update = function(){
    var skip = false;
    var skip2;
    var playerOverlap = game.physics.arcade.overlap(this, player);
+   var distanceToLadder = Math.abs(player.y - this.y);
 
    //to pickup the ladder
-   if(this.pickup && !player.hasItem && !skip2 && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasLadder && playerOverlap){
+   if(this.pickup && !player.hasItem && !skip2 && game.input.keyboard.justPressed(Phaser.Keyboard.O) && !this.hasLadder && playerOverlap && distanceToLadder < 40){
       this.hasLadder = true;
       skip = true;
       player.hasItem = true;

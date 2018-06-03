@@ -23,7 +23,7 @@ function Player(game, key, frame, xcoord, ycoord){
    // this.body.gravity.y = 300;
    this.body.collideWorldBounds = true;
    
-   this.animations.add('animation', [1,2,3,4,5], 10, true);
+   this.animations.add('animation', [1,2,3,4,5], 15, true);
 }
 
 // Explicitly defines the prefab's prototype and constructor
