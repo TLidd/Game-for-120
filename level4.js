@@ -85,12 +85,66 @@ level4.prototype = {
 
       var Ladder2 = new createLadder(game, 'atlas', 'ladder', 1008, 730, 0, 300, false);
       game.add.existing(Ladder2);
-      Ladders.add(Ladder2);        
+      Ladders.add(Ladder2);
+
+      var Ladder3 = new createLadder(game, 'atlas', 'ladder', 910, 1600, 0, 300, false);
+      game.add.existing(Ladder3);
+      Ladders.add(Ladder3);   
+      Ladder3.scale.setTo(1,1.3);
+      
+      var Ladder4 = new createLadder(game, 'atlas', 'ladder', 800, 1440, -90, 300, true);
+      game.add.existing(Ladder4);
+      Ladders.add(Ladder4);
+      Ladder4.scale.setTo(1,1.3);
+      
+      var Ladder5 = new createLadder(game, 'atlas', 'ladder', 128, 1440, 0, 300, false);
+      game.add.existing(Ladder5);
+      Ladders.add(Ladder5);   
+      Ladder5.scale.setTo(1,1);
+      
+      var Ladder6 = new createLadder(game, 'atlas', 'ladder', 128, 1100, 0, 300, false);
+      game.add.existing(Ladder6);
+      Ladders.add(Ladder6);  
+      Ladder6.scale.setTo(1,1.55);  
+
+      var Ladder7 = new createLadder(game, 'atlas', 'ladder', 128, 900, 0, 0, false);
+      game.add.existing(Ladder7);
+      Ladders.add(Ladder7);  
+      Ladder7.scale.setTo(1,1.55); 
+
+      var Ladder8 = new createLadder(game, 'atlas', 'ladder', 450, 900, 0, 0, false);
+      game.add.existing(Ladder8);
+      Ladders.add(Ladder8);  
+      Ladder8.scale.setTo(1,1.75);      
 
       //Creating the boxes for the map
       var Box1 = new createBox(game, 'atlas', 'box', 1280, 768);
       game.add.existing(Box1);
       Boxes.add(Box1);
+      
+      var Box2 = new createBox(game, 'atlas', 'box', 1600, 928);
+      game.add.existing(Box2);
+      Boxes.add(Box2);
+      
+      var Box3 = new createBox(game, 'atlas', 'box', 1568, 1600);
+      game.add.existing(Box3);
+      Boxes.add(Box3);
+      
+      var Box4 = new createBox(game, 'atlas', 'box', 256, 1600);
+      game.add.existing(Box4);
+      Boxes.add(Box4);
+      
+      var Box5 = new createBox(game, 'atlas', 'box', 896, 1248);
+      game.add.existing(Box5);
+      Boxes.add(Box5);
+      
+      var Box6 = new createBox(game, 'atlas', 'box', 600, 1150);
+      game.add.existing(Box6);
+      Boxes.add(Box6);
+      
+      var Box7 = new createBox(game, 'atlas', 'box', 200, 1150);
+      game.add.existing(Box7);
+      Boxes.add(Box7);
       
       //beginning entrance
       var beginningEntrance = game.add.sprite(736,640, 'door');
@@ -103,43 +157,44 @@ level4.prototype = {
       
       //kill spikes      
       var spike = killSpike.create(1033, 803, 'spike');
-      spike.body.moves = false;  
-
-      var spike = killSpike.create(1565, 680, 'spike');
-      spike.angle = 90;
-      spike.body.moves = false; 
-
-      var spike = killSpike.create(1565, 872, 'spike');
-      spike.angle = 90;
-      spike.body.moves = false;      
-      
-      var spike = killSpike.create(1603, 1076, 'spike');
-      spike.angle = -90;
-      spike.body.moves = false; 
+      spike.body.moves = false;       
       
       var xcoord = 1129;
-      for(var i = 0;, i < 6; i++){
-         var spike = killSpike.create(xcoord, 1251, 'spike');
+      for(var i = 0; i < 6; i++){
+         var spike = killSpike.create(xcoord, 1283, 'spike');
          spike.body.moves = false; 
          xcoord = xcoord + 32;
       }
       
-      var spike = killSpike.create(1225, 1443, 'spike');
+      var spike = killSpike.create(1225, 1507, 'spike');
       spike.body.moves = false;
+      
+      var spike = killSpike.create(329, 1123, 'spike');
+      spike.body.moves = false;
+      
+      var spike = killSpike.create(361, 1123, 'spike');
+      spike.body.moves = false;
+      
+      xcoord = 233;
+      for(var i = 0; i < 6; i++){
+         var spike = killSpike.create(xcoord, 867, 'spike');
+         spike.body.moves = false; 
+         xcoord = xcoord + 32;
+      }
 
       
       //x = door + 39, y = door + 68
       //spikes used for doorway detection because why not
-      var col1 = Entrance.create(135, 260, 'spike');
+      var col1 = Entrance.create(775, 512, 'spike');
       col1.body.moves = false;
       Entrance.add(col1);
       
-      var col2 = Entrance.create(167, 260, 'spike');
+      var col2 = Entrance.create(807, 512, 'spike');
       col2.body.moves = false;
       Entrance.add(col2);
             
       //add level goal that goes to next state     
-      var levelGoal = game.add.sprite(96, 192, 'door');
+      var levelGoal = game.add.sprite(736, 448, 'door');
       
       //adding player to the game via prefab
       player = new Player(game, 'player', 0, 672, 736);

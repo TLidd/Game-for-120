@@ -81,7 +81,7 @@ LevelSelect.prototype = {
          underlineText = game.add.text(600, 358, '_', textStyle);
          underlineText.anchor.set(0.5, 0.5);
       }
-      
+      //selects the level based on the user's position
       if(game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR) || game.input.keyboard.justPressed(Phaser.Keyboard.ENTER)){
          if(position == 1){
             game.state.start('switch2');
@@ -96,7 +96,7 @@ LevelSelect.prototype = {
             game.state.start('switch4');
          }
       }
-      
+      //quit to main menu
       if(game.input.keyboard.justPressed(Phaser.Keyboard.Q)){
          game.state.start('mainMenu');
       }

@@ -253,7 +253,7 @@ LevelOne.prototype = {
       if(win){
          player.footsteps.stop();
          music.stop();
-         game.state.start('switch5');
+         game.state.start('switch4');
       }
       if(lose){
          player.footsteps.stop();
