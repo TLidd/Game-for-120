@@ -30,7 +30,6 @@ function Player(game, key, frame, xcoord, ycoord){
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
-// Now to override Phaser.Sprite's update to allow for movement
 Player.prototype.update = function(){
    //set vel to 0 when not moving
    this.body.gravity.y = 400;

@@ -46,6 +46,7 @@ credits.prototype = {
 }
 
 function nextText(){
+   //kill the previous text
    makersText.kill();
    makers2Text.kill();
    makers3Text.kill();
@@ -57,7 +58,7 @@ function nextText(){
          stroke: '#000000',
          strokeThickness: 2
    };
-   
+   //create the box text
    boxText = game.add.text(400, 225, 'Crate/Box created by Bluerobin2', textStyle);
    boxText.anchor.set(0.5, 0.5);
    boxText2 = game.add.text(400, 275, 'https://opengameart.org/content/small-crate', textStyle);
@@ -65,6 +66,7 @@ function nextText(){
 }
 
 function nextText2(){
+   //kill the previous text
    boxText.kill();
    boxText2.kill();
    
@@ -75,7 +77,7 @@ function nextText2(){
          stroke: '#000000',
          strokeThickness: 2
    };
-   
+   //create the new sound text
    soundText = game.add.text(400, 125, 'Footsteps sound created by Little Robot Sound Factory', textStyle);
    soundText.anchor.set(0.5, 0.5);
    soundText2 = game.add.text(400, 175, 'www.littlerobotsoundfactory.com', textStyle);
@@ -87,6 +89,7 @@ function nextText2(){
 }
 
 function nextText3(){
+   //kill the previous text
    soundText.kill();
    soundText2.kill();
    soundText3.kill();
@@ -99,7 +102,7 @@ function nextText3(){
          stroke: '#000000',
          strokeThickness: 2
    };
-   
+   //create the new sound text
    soundText = game.add.text(400, 125, 'Annulet of absorption (unchanged) created by CosmicD', textStyle);
    soundText.anchor.set(0.5, 0.5);
    soundText2 = game.add.text(400, 175, 'https://freesound.org/people/CosmicD/sounds/133008/', textStyle);
@@ -111,5 +114,6 @@ function nextText3(){
 }
 
 function endCredits(){
+   //go back to main menu
    game.state.start('mainMenu');
 }

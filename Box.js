@@ -27,7 +27,6 @@ function createBox(game, key, frame, xcoord, ycoord){
 createBox.prototype = Object.create(Phaser.Sprite.prototype);
 createBox.prototype.constructor = createBox;
 
-// Now to override Phaser.Sprite's update to allow for movement
 createBox.prototype.update = function(){
    //define variables for checking picking up and placing conditions
    var haveBox = false;

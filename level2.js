@@ -186,7 +186,7 @@ level2.prototype = {
          music.stop();
          game.state.start('mainMenu');
       }
-      
+      //to restart
       if(game.input.keyboard.justPressed(Phaser.Keyboard.R)){
          player.footsteps.stop();
          music.stop();

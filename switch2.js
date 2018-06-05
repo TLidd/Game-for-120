@@ -9,7 +9,7 @@ switch2.prototype = {
       game.load.audio('end', 'assets/audio/Annulet of absorption.wav');
    },
    create: function(){
-      
+      //sound for the switch
       sound = game.add.audio('end', false);
       sound.volume = 0.1;
       sound.play();

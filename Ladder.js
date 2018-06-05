@@ -27,7 +27,6 @@ function createLadder(game, key, frame, xcoord, ycoord, angle, gravity, canHold)
 createLadder.prototype = Object.create(Phaser.Sprite.prototype);
 createLadder.prototype.constructor = createLadder;
 
-// Now to override Phaser.Sprite's update to allow for movement
 createLadder.prototype.update = function(){
    //define variables for checking picking up and placing conditions
    var skip = false;
@@ -66,7 +65,7 @@ createLadder.prototype.update = function(){
       player.hasItem = false;
       holdingLadder = false;
    }
-
+   //sets the velocity and gravity for when player on ladder
    if(playerOverlap && !this.hasLadder && this.angle == 0){
       if(playerOverlap && game.input.keyboard.isDown(Phaser.Keyboard.W)){
          player.body.gravity.y = 0;
